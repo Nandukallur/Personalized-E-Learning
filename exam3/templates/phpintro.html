@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PHP Introduction</title>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+       <style>
+        .navbar {
+            background: rgb(124,123,123);
+            background: linear-gradient(90deg, rgba(124,123,123,0.9501050420168067) 33%, rgba(237,237,237,1) 98%);
+            color: white;
+            overflow: hidden;
+            padding: 20px ; /* Adjust navbar padding */
+            line-height: 2; /* Adjust navbar height */
+        }
+
+        /* Rest of the CSS styles remain unchanged */
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            font-size: 17px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Styling for the toggle button */
+        #toggleButton {
+            background-color: #f85a40;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #toggleButton:hover {
+            background-color: #d83c22;
+        }
+
+        /* Styling for the sections */
+        .section {
+            display: none;
+            padding: 20px;
+            border: 1px solid #060606;
+            border-radius: 5px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(250, 248, 248, 0.1);
+        }
+        .active {
+            display: block; /* Show the active section */
+        }
+
+        .dropdown .dropbtn {
+            font-size: 16px;
+            border: none; /* Remove the border */
+            border-radius: 0.50rem;
+            outline: none;
+            color: white;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+
+        }
+        .dropdown-content  {
+            right: 0;
+            display: none;
+            position: absolute;
+            background-color:white;
+            width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            cursor: pointer;
+            transition: width 2s, height 4s;
+            opacity: 0.8;
+            border-radius: 0.5rem;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border-radius: 0.50rem;
+        }
+
+        /* Change color of dropdown links on hover */
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+
+        }
+
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {
+            display: block;
+
+        }
+        ul li a:hover{
+            color: gray;
+
+        }
+
+        .vstack > div {
+            background-color: #e0e0e0; /* Light gray background color */
+            border-radius: 0px; /* Rounded corners for a better appearance */
+            padding: 10px; /* Adjusted padding for spacing inside the items */
+            margin-bottom: 5px; /* Reduced margin between items for spacing */
+            transition: background-color 0.3s ease; /* Smooth transition for background color change */
+            max-width: 300px; /* Reduced maximum width for each item */
+            overflow: hidden; /* Hide overflowing content */
+            text-overflow: ellipsis; /* Show ellipsis for overflow text */
+            white-space: nowrap; /* Prevent text from wrapping */
+        }
+
+        .vstack > div:hover {
+            background-color: #33cbd6; /* Darker gray background color on hover */
+        }
+    </style>
+
+</head>
+<body>
+    {% load static %}
+    {% load static %}
+
+<section id="one">
+    <nav class="navbar">
+        <div class="nav-logo">
+             <a href="{% url 'h' %}"><h2>E-Learning</h2></a>
+            <div class="hamburger">
+                <a href="#"><i class="far fa-moon white"></i></a>
+                <a href="#"><i class="fas fa-bars"></i></a>
+            </div>
+        </div>
+        <ul class="nav-links" style="padding-right: 150px;">
+
+            <li class="dropdown">
+                <button class="dropbtn"><a href="{% url 'pythonintro' %}" style="text-decoration: none;">Python</a></button>
+                <div class="dropdown-content">
+                    <a class="nav-link" href="{% url 'basic' %}">Basic Section</a>
+                    {% for i in data %}
+                        {% if i.section == 'Basic' and i.score > 7 %}
+                            <a href="{% url 'inter' %}">Intermediate Section</a>
+                        {% endif %}
+                    {% endfor %}
+                    {% for i in data %}
+                        {% if i.score > 7 and i.section == 'Intermediate' %}
+                            <a href="{% url 'adv' %}">Advanced Section</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </li>
+            <li class="dropdown">
+                <button class="dropbtn"><a href="{% url 'basichtml' %}" style="text-decoration: none;">HTML</a></button>
+                <div class="dropdown-content">
+                    <a class="nav-link" href="{% url 'basichtml' %}">Basic Section</a>
+                    {% for i in data %}
+                        {% if i.section == 'BasicHTML' and i.score > 7 %}
+                            <a href="{% url 'interhtml' %}">Intermediate Section</a>
+                        {% endif %}
+                    {% endfor %}
+                    {% for i in data %}
+                        {% if i.section == 'IntermediateHTML' and i.score > 7 %}
+                            <a href="{% url 'advhtml' %}">Advanced Section</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </li>
+            <li class="dropdown">
+                <button class="dropbtn"><a href="{% url 'basicphp' %}" style="text-decoration: none;">PHP</a></button>
+                <div class="dropdown-content">
+                    <a class="nav-link" href="{% url 'basicphp' %}">Basic Section</a>
+                    {% for i in data %}
+                        {% if i.section == 'BasicPHP' and i.score > 7 %}
+                            <a href="{% url 'interphp' %}">Intermediate Section</a>
+                        {% endif %}
+                    {% endfor %}
+                    {% for i in data %}
+                        {% if i.section == 'IntermediatePHP' and i.score > 7 %}
+                            <a href="{% url 'advphp' %}">Advanced Section</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </li>
+            <li class="dropdown">
+                <button class="dropbtn"><a href="#" style="text-decoration: none;">CERTIFICATE</a></button>
+                <div class="dropdown-content">
+                    {% for i in data %}
+                        {% if i.score > 7 and i.section == 'Advanced' %}
+                            <a href="{% url 'pythoncertificate' %}">PYTHON</a>
+                        {% endif %}
+                    {% endfor %}
+                    {% for i in data %}
+                        {% if i.section == 'AdvancedHTML' and i.score > 7 %}
+                            <a href="{% url 'htmlcertificate' %}">HTML Section</a>
+                        {% endif %}
+                    {% endfor %}
+                    {% for i in data %}
+                        {% if i.section == 'AdvancedPHP' and i.score > 7 %}
+                            <a href="{% url 'htmlcertificate' %}">php certificate</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </li>
+        </ul>
+    </nav>
+</section>
+
+
+<!--    <div class="navbar">-->
+<!--      <h2>E-Learning</h2>-->
+
+<!--                 &lt;!&ndash; Dropdown &ndash;&gt;-->
+<!--                <ul class="nav-links" style="padding-right: 200px;">-->
+<!--            <li class="dropdown">-->
+<!--                <button class="dropbtn"><a href="{% url 'pythonintro' %}" style="text-decoration: none;">PYTHON</a></button>-->
+<!--                <div class="dropdown-content">-->
+<!--                    <a class="nav-link" href="{% url 'basic' %}">Basic Section</a>-->
+<!--                    {% for i in data %}-->
+<!--                        {% if i.section == 'Basic' and i.score > 7 %}-->
+<!--                            <a href="{% url 'inter' %}">Intermediate Section</a>-->
+<!--                        {% endif %}-->
+<!--                    {% endfor %}-->
+<!--                    {% for i in data %}-->
+<!--                        {% if i.score > 7 and i.section == 'Intermediate' %}-->
+<!--                            <a href="{% url 'adv' %}">Advanced Section</a>-->
+<!--                        {% endif %}-->
+<!--                    {% endfor %}-->
+<!--                </div>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--        &lt;!&ndash; End of Dropdown &ndash;&gt;-->
+
+
+<!--    </div>-->
+
+
+    <div class="ml-3">
+        <div id="section1" class="section active mr-2 mb-2">
+            <link rel="stylesheet" href="{% static 'js/home.js' %}">
+
+      <h1 style="text-align: center;">Welcome to the world of PHP!</h1>
+        <p style=" color: black; font-size:20px; padding: 30px; font-weight: 500;">
+            PHP (Hypertext Preprocessor) is a powerful server-side scripting language widely used for web development.
+            Introduced by Rasmus Lerdorf in 1994, PHP has evolved into a versatile language known for its ease of use,
+            broad community support, and extensive functionality.
+        </p>
+        <!-- <p>
+            <strong>Key Characteristics of PHP:</strong>
+        </p>
+        <ul>
+            <li>1. <strong>Server-Side Scripting:</strong> PHP is designed to execute on the server, allowing dynamic
+                content generation before sending data to the client's browser.</li>
+            <li>2. <strong>Embedded in HTML:</strong> PHP code can be seamlessly integrated with HTML, enabling the creation
+                of dynamic web pages with mixed content.</li>
+            <li>3. <strong>Open Source:</strong> PHP is open-source software, fostering a collaborative community of
+                developers contributing to its growth and improvement.</li>
+            <li>4. <strong>Extensive Library Support:</strong> PHP boasts a rich ecosystem of libraries and frameworks,
+                simplifying common tasks and accelerating development.</li>
+            <li>5. <strong>Database Integration:</strong> PHP supports interaction with various databases, making it ideal
+                for creating data-driven applications.</li>
+            <li>6. <strong>Platform Independence:</strong> PHP is compatible with major operating systems like Windows,
+                Linux, and macOS.</li>
+        </ul>
+        <p>
+            <strong>PHP Syntax:</strong><br>
+            PHP code is embedded within HTML using the opening and closing PHP tags:
+            <code>
+                &lt;?php
+                // Your PHP code here
+                ?&gt;
+            </code>
+        </p>
+        <p>
+            <strong>Example PHP Code:</strong><br>
+            Let's create a simple PHP script to display a welcome message with the current date:
+            <code>
+                <?php
+                    $currentDate = date("Y-m-d");
+                    echo "Welcome to our website! Today's date is $currentDate.";
+                ?>
+            </code>
+        </p>
+        <p>
+            PHP's versatility extends beyond basic web development, making it suitable for tasks such as command-line
+            scripting, server-side applications, and more. As you explore PHP, you'll discover its capability to empower
+            dynamic and interactive web experiences.
+        </p>
+        <p>
+            Feel free to delve into PHP's extensive documentation and community resources to unlock its full potential in
+            your web development journey.
+        </p> -->
+
+        <div class="vstack gap-3">
+            <div class="p-2"><a href="{% url 'basic' %}">Basic Section</a></div>
+            <div class="p-2"><a href="{% url 'inter' %}">Intermediate</a></div>
+            <div class="p-2"><a href="{% url 'adv' %}">Advanced</a></div>
+            <div class="p-2"><a href="#">Coding</a></div>
+            <div class="p-2"><a href="#">Project</a></div>
+          </div>
+
+</div>
+    
+
+    </div>
+
+</body>
+</html>

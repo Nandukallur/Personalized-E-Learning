@@ -1,0 +1,165 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <title>Materials</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <style>
+     .navbar {
+            background-color: #333;
+            color: white;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            /* padding: 14px 16px; */
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+    #toggleButton {
+            background-color: #f85a40;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #toggleButton:hover {
+            background-color: #d83c22;
+        }
+                /* Styling for the sections */
+                .section {
+            display: none;
+            padding: 20px;
+            border: 1px solid #060606;
+            border-radius: 5px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(250, 248, 248, 0.1);
+        }
+        .active {
+            display: block; /* Show the active section */
+        }
+  </style>
+  <body>
+    {% load static %}
+      <div class="navbar">
+      <h2>Learning Materials</h2>
+      <!-- <a href="#">Home</a>-->
+      <a href="{% url 'basichtml' %}" class="btn btn-info" style="margin-left: 60%;padding: 9px;">Take the test again</a> 
+      <button id="toggleButton" class="btn btn-primary">Toggle Section</button>
+      </div>
+      <link rel="stylesheet" href="{% static 'js/home.js' %}">
+      <div class="ml-3">
+        <div id="section1" class="section active mr-2 mb-2">
+      <h1  style="font-family: Pacifico; color: black;">Intermediate HTML</h1>
+
+      <img class=mb-3 mt-3 src="{% static 'images/html.avif' %}" alt="basic" style="width: 50%; max-width: 750px;padding-left:100px;">  
+
+      <p style="font-family: Pacifico; color: black; font-size: 20px;">
+        Whereas the purpose of the HTML Beginner Tutorial was to teach the bare essentials, this guide adds a few nuts and bolts, which shouldn't be particularly difficult as such, but will add a bit more to our understanding of HTML and enable us to do a few more things.</p>
+
+      <p style="font-family: Pacifico; color: black; font-size: 20px;">In this tutorial, we are going to dwelve into the details of the basic structure of HTML.</p> 
+
+      <h3 style="font-family: Pacifico; color: black; font-size: 20px;">HTML Structure</h3>  
+      
+      <p style="font-family: Pacifico; color: black; font-size: 20px;">In the HTML5 Basic Tutorials - HTML Structure - Document we explored basic HTML structure, it's now time to introduce some more structural HTML tags.
+        In this lesson we learn about the div, footer, header, main and span tags and how they affect the layout structure of our HTML.</p>
+        
+      <img class="mb-3 mt-3" src="{% static 'images/htmlstructure.png' %}" alt="WordCloud" style="width: 100%; max-width: 700px;padding-left: 100px;">
+
+      <p style="font-family: Pacifico; color: black; font-size: 20px;">The Division Element
+        The div tag and its' closing div tag don't affect our web page directly but are generally used to group block-level content for attribution or styling with CSS.</p>
+
+      <p style="font-family: Pacifico; color: black; font-size: 20px;">The Footer Element
+        The footer tag and its' closing footer tag are used to define a footer for a HTML document or section.</p>
+
+      <p style="font-family: Pacifico; color: black; font-size: 20px;">The Header Element
+        The header tag and its' closing header tag are used to define introductory content for its nearest sectioning ancestor content tag or for a sectioning root element tag.</p>
+       
+      <p style="font-family: Pacifico; color: black; font-size: 20px;">The Main Content Element
+        The main tag and its' closing main tag are used to define the main content area within a HTML document.</p>
+      
+      <p style="font-family: Pacifico; color: black; font-size: 20px;">The Span Element
+        span tag and its' closing span tag don't affect our web page directly but are generally used as a generic container for inline content that allows styling or attribution of that content.</p>  
+      <div>
+      <h3 style="font-family: Pacifico; color: black; font-size: 20px;">HTML Form & HTTP Request</h3>
+
+      <p style="font-family: Pacifico; color: black; font-size: 20px;">  An HTML Form (Web Form) allows a web user to interact with the server. An HTML form contains input elements (or fields, controls, widgets), such as text fields, checkboxes, and buttons. These input fields allow web users to supply data (called request parameters or query string) to the web server. Over at the web server, a server-side program collects these data and returns a dynamic response based on the inputs submitted.</p>
+
+      </div>  
+      </div>
+      </div>
+      <div id="section2" class="section">
+        <div class="row ml-2 mt-2 ">
+            <div class="card-body font-weight-bold">
+                <video controls width="1400" height="630">
+                    <source src="{% static 'videos/HTML_Intermediate.mp4' %}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video><br>
+                <a href="#" id="downloadVideo" class="btn btn-info">Download Video</a>
+            </div>
+            <!-- <div>
+              <a href="{% url 'basic' %}" class="btn btn-info mt-3 ml-3 mb-3">Take the test again</a>
+          </div> -->
+        </div>
+    </div>
+  </body>
+  <script>
+    // Function to toggle between sections
+    function toggleSections() {
+        const section1 = document.getElementById('section1');
+        const section2 = document.getElementById('section2');
+
+        if (section1.classList.contains('active')) {
+            section1.classList.remove('active');
+            section2.classList.add('active');
+        } else {
+            section2.classList.remove('active');
+            section1.classList.add('active');
+        }
+    }
+
+    // Event listener for the toggle button
+    document.getElementById('toggleButton').addEventListener('click', function() {
+        toggleSections();
+    });
+
+    // JavaScript to download video
+    document.getElementById("downloadVideo").addEventListener("click", function() {
+        // Replace 'video_url' with the actual URL of the video file.
+        const videoUrl = "{% static 'videos/HTML_Intermediate.mp4' %}";
+
+        // Create an anchor element to initiate the download.
+        const a = document.createElement("a");
+        a.href = videoUrl;
+        a.download = "video.mp4"; // Provide the desired filename for the video.
+        a.style.display = "none";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    });
+  </script>
+
+</html>

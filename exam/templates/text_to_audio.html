@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Audio Output</title>
+    <style>
+  /* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.text-input-form {
+    text-align: center;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.audio-section {
+    margin-top: 30px;
+}
+
+.audio-container {
+    margin-bottom: 20px;
+}
+
+.no-audio {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+}
+
+.download-link {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+.download-link:hover {
+    text-decoration: underline;
+}
+
+    </style>
+</head>
+<body>
+    {% load static %}
+    <div class="container">
+        <h1>Text-to-Audio Converter</h1>
+        <div class="audio-section">
+           
+            <h2>Your audio file:</h2>
+                    <audio controls>
+                        <source src="{% static 'audio/audio_output.mp3' %}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+        </div>
+        <form method="post" id="audioForm" class="text-input-form" >
+            {% csrf_token %}
+            <textarea name="text_to_convert" rows="4" cols="50" id="textInput" placeholder="Enter text to convert"></textarea>
+            <button type="submit" id="convertBtn">Convert to Audio</button>
+        </form>
+    </div>
+    <script>
+        
+        document.getElementById("audioForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const textInput = document.getElementById("textInput").value;
+
+            // Send a POST request to the server to convert text to audio
+            fetch('{% url "audio" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: 'text_to_convert=' + encodeURIComponent(textInput)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.audio_url) {
+                    // If audio URL is received, set the audio element source and download link
+                    const audioElement = document.createElement('audio');
+                    audioElement.controls = true;
+                    const sourceElement = document.createElement('source');
+                    sourceElement.src = data.audio_url;
+                    sourceElement.type = 'audio/mpeg';
+                    audioElement.appendChild(sourceElement);
+
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = data.audio_url;
+                    downloadLink.innerText = 'Download Audio';
+                    downloadLink.download = 'audio_output.mp3';
+
+                    const audioContainer = document.querySelector('.audio-container');
+                    audioContainer.innerHTML = '';
+                    audioContainer.appendChild(audioElement);
+                    audioContainer.appendChild(downloadLink);
+                } else {
+                    // Handle if no audio URL is received
+                    const noAudioMessage = document.createElement('p');
+                    noAudioMessage.classList.add('no-audio');
+                    noAudioMessage.innerText = 'No audio generated yet.';
+                    const audioSection = document.querySelector('.audio-section');
+                    audioSection.innerHTML = '';
+                    audioSection.appendChild(noAudioMessage);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
+

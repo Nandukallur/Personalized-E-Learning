@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Python Basics</title>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+       
+    .navbar {
+            background-color: #333;
+            color: white;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            /* padding: 14px 16px; */
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Styling for the toggle button */
+        #toggleButton {
+            background-color: #f85a40;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #toggleButton:hover {
+            background-color: #d83c22;
+        }
+
+        /* Styling for the sections */
+        .section {
+            display: none;
+            padding: 20px;
+            border: 1px solid #060606;
+            border-radius: 5px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(250, 248, 248, 0.1);
+        }
+        .active {
+            display: block; /* Show the active section */
+        }
+    </style>
+</head>
+<body >
+    {% load static %}
+    <div class="navbar">
+      <h2>Learning Materials</h2>
+      <!-- <a href="#">Home</a>-->
+      <a href="{% url 'basic' %}" class="btn btn-info" style="margin-left: 60%;padding: 9px;">Take the test again</a> 
+      <button id="toggleButton" class="btn btn-primary">Toggle Section</button>
+      </div>
+    <link rel="stylesheet" href="{% static 'js/home.js' %}">
+    <div class="ml-3">
+    <div id="section1" class="section active mr-2 mb-2">
+      <h1 style="font-family: Pacifico; color: black;">Welcome to the World of Python</h1>
+    
+    <!-- Display the WordCloud image -->
+    <img class="mb-3 mt-3" src="{% static 'images/wordcloud.png' %}" alt="WordCloud" style=" max-width: 400px;padding-left: 100px;">
+
+    <p style="font-family: Pacifico; color: black; font-size: 20px;">
+        Python is a popular programming language. It was created by Guido van Rossum and released in 1991.
+        It is used for web development (server-side), software development, mathematics, system scripting.
+        Python is a case-sensitive programming language. This means that it considers uppercase and lowercase
+        letters differently. As a result, in Python, we cannot use two terms with the same characters but
+        different cases interchangeably. It is both compiled and interpreted language.
+    </p>
+
+    <h2 style="font-family: Pacifico; color: black;">Tree Diagram of Data Types in Python</h2>
+    <!-- Display the WordCloud image -->
+    <img class="mb-3 mt-3" src="{% static 'images/Digraph.gv.png' %}" alt="WordCloud" style="width: 100%; max-width: 700px;padding-left: 100px;">
+
+    <h3 style="font-family: Pacifico; color: black; font-size: 20px;">Types of Data Types in Python</h3>
+    <ul style="font-family: Pacifico; color: black; font-size: 20px;">
+        <li>Numeric data types</li>
+        <li>String data types</li>
+        <li>Sequence types</li>
+        <li>Mapping data type</li>
+        <li>Set data types</li>
+        <li>Boolean type</li>
+    </ul>
+
+    <p style="font-family: Pacifico; color: black; font-size: 20px;">
+        Numeric: numeric data type is used to hold numeric values like; int, float and complex.
+        int holds signed integers of non-limited length. float holds floating precision numbers and it's
+        accurate up to 15 decimal places. Complex holds complex numbers.
+    </p>
+    
+    <p style="font-family: Pacifico; color: black; font-size: 20px;">
+        String: The string is a sequence of characters.
+    </p>
+
+    <p style="font-family: Pacifico; color: black; font-size: 20px;">
+        Sequence: sequence refers to a collection of ordered elements.
+        The main built-in sequence types in Python are: list, tuple and range.
+        List is an ordered sequence of some data written using square brackets and commas.
+        Tuple is another data type which is a sequence of data similar to a list.
+        Data in a tuple is written using parenthesis and commas.
+        Range is used to represent an immutable sequence of numbers.
+    </p>
+
+    <p style="font-family: Pacifico; color: black; font-size: 20px;">
+        Mapping: A mapping is a collection of key-value pairs, where each key is unique and associated with a corresponding value.
+        The dict type is used to represent mappings in Python.
+        The dictionary (dict) is a built-in data type that represents a collection of key-value pairs.
+        It is a mutable, unordered, and dynamic data structure.
+    </p>
+
+    <p style="font-family: Pacifico; color: black; font-size: 20px;">
+        Set : Set is a built-in data type that represents an unordered collection of unique elements.
+    </p>
+
+    <p style="font-family: Pacifico; color: black; font-size: 20px;">
+        Boolean : boolean type represents Boolean values, which are either True or False.
+    </p>
+      <!-- <div>
+          <a href="{% url 'basic' %}" class="btn btn-info mt-3 ml-3 mb-3">Take the test again</a>
+      </div> -->
+  </div>
+    
+    
+  <div id="section2" class="section">
+    <div class="row ml-2 mt-2 ">
+        <div class="card-body font-weight-bold">
+            <video controls width="1400" height="630">
+                <source src="{% static 'videos/Python-Basics.mp4' %}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video><br>
+            <a href="#" id="downloadVideo" class="btn btn-info">Download Video</a>
+        </div>
+        <!-- <div>
+          <a href="{% url 'basic' %}" class="btn btn-info mt-3 ml-3 mb-3">Take the test again</a>
+      </div> -->
+    </div>
+</div>
+</div>
+    <script>
+      // Function to toggle between sections
+      function toggleSections() {
+          const section1 = document.getElementById('section1');
+          const section2 = document.getElementById('section2');
+
+          if (section1.classList.contains('active')) {
+              section1.classList.remove('active');
+              section2.classList.add('active');
+          } else {
+              section2.classList.remove('active');
+              section1.classList.add('active');
+          }
+      }
+
+      // Event listener for the toggle button
+      document.getElementById('toggleButton').addEventListener('click', function() {
+          toggleSections();
+      });
+
+      // JavaScript to download video
+      document.getElementById("downloadVideo").addEventListener("click", function() {
+          // Replace 'video_url' with the actual URL of the video file.
+          const videoUrl = "{% static 'videos/Python-Basics.mp4' %}";
+
+          // Create an anchor element to initiate the download.
+          const a = document.createElement("a");
+          a.href = videoUrl;
+          a.download = "video.mp4"; // Provide the desired filename for the video.
+          a.style.display = "none";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+      });
+    </script>
+    
+ </body>
+</html>

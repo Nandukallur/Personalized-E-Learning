@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Materials</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <style>
+         .navbar {
+            background-color: #333;
+            color: white;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            /* padding: 14px 16px; */
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Styling for the toggle button */
+        #toggleButton {
+            background-color: #f85a40;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #toggleButton:hover {
+            background-color: #d83c22;
+        }
+
+        /* Styling for the sections */
+        .section {
+            display: none;
+            padding: 20px;
+            border: 1px solid #060606;
+            border-radius: 5px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(250, 248, 248, 0.1);
+        }
+        .active {
+            display: block; /* Show the active section */
+        }
+
+  </style>
+  <body>
+        {% load static %}
+        <div class="navbar">
+      <h2>Learning Materials</h2>
+      <!-- <a href="#">Home</a>-->
+      <a href="{% url 'basicphp' %}" class="btn btn-info" style="margin-left: 60%;padding: 9px;">Take the test again</a>
+      <button id="toggleButton" class="btn btn-primary">Toggle Section</button>
+      </div>
+    <link rel="stylesheet" href="{% static 'js/home.js' %}">
+    <div class="ml-3">
+    <div id="section1" class="section active mr-2 mb-2">
+         <h1 style="font-family: Pacifico; color: black;">PHP Introduction</h1>
+            <h3 style="font-family: Pacifico; color: black;">What is PHP?</h3>
+
+            <!-- Display the display php image image -->
+            <img class="mb-3 mt-3" src="{% static './img/php_basic.jpg' %}" alt="WordCloud" style=" max-width: 600px;padding-left: 100px;">
+            <p style="font-family: Pacifico; color: black; font-size: 20px;">
+            PHP is an open-source, interpreted, and object-oriented scripting language that can be executed at the server-side.
+                PHP is well suited for web development. Therefore, it is used to develop web applications (an application that executes on the server and generates the dynamic page.).
+        <br><br>
+    PHP was created by Rasmus Lerdorf in 1994 but appeared in the market in 1995. PHP 7.4.0 is the latest version of PHP, which was released on 28 November.
+    Some important points need to be noticed about PHP are as followed:</p>
+
+        <ul style="font-family: Pacifico; color: black; font-size: 20px;">
+        <li>PHP stands for Hypertext Preprocessor.</li>
+        <li>PHP is an interpreted language, i.e., there is no need for compilation.</li>
+        <li>PHP is faster than other scripting languages, for example, ASP and JSP.</li>
+        <li>PHP is a server-side scripting language, which is used to manage the dynamic content of the website.</li>
+        <li>PHP can be embedded into HTML.</li>
+        <li>PHP is an object-oriented language.</li>
+        <li>PHP is an open-source scripting language.</li>
+        <li>PHP is simple and easy to learn language.</li>
+    </ul>
+    <h2 style="font-family: Pacifico; color: black; ">Why use PHP</h2>
+        <p style="font-family: Pacifico; color: black; font-size: 20px;">PHP is a server-side scripting language, which is used to design the dynamic web applications with MySQL database.</p>
+
+  <ul style="font-family: Pacifico; color: black; font-size: 20px;">
+        <li>It handles dynamic content, database as well as session tracking for the website.</li>
+        <li>You can create sessions in PHP.</li>
+        <li>It can access cookies variable and also set cookies.</li>
+        <li>It helps to encrypt the data and apply validation.</li>
+        <li>PHP supports several protocols such as HTTP, POP3, SNMP, LDAP, IMAP, and many more</li>
+        <li>Using PHP language, you can control the user to access some pages of your website.</li>
+        <li>As PHP is easy to install and set up, this is the main reason why PHP is the best language to learn.</li>
+        <li>PHP can handle the forms, such as - collect the data from users using forms, save it into the database, and return useful information to the user. For example - Registration form.
+</li>
+    </ul>
+           <h1 style="font-family: Pacifico; color: black; ">PHP Features</h1>
+        <p style="font-family: Pacifico; color: black; font-size: 20px;">PHP is very popular language because of its simplicity and open source. There are some important features of PHP given below:</p>
+
+        <!-- Display the WordCloud image -->
+        <img class="mb-3 mt-3" src="{% static 'img/php_basic2.jpg' %}" alt="WordCloud" style=" max-width: 600px;padding-left: 100px;">
+    <p style="font-family: Pacifico; color: black; font-size: 20px;">Performance: PHP script is executed much faster than those scripts which are written in other languages such as JSP and ASP. PHP uses its own memory, so the server workload and loading time is automatically reduced, which results in faster processing speed and better performance.</p>
+    <p style="font-family: Pacifico; color: black; font-size: 20px;">Open Source: PHP source code and software are freely available on the web. You can develop all the versions of PHP according to your requirement without paying any cost. All its components are free to download and use.</p>
+    <p style="font-family: Pacifico; color: black; font-size: 20px;">Familiarity with syntax: PHP has easily understandable syntax. Programmers are comfortable coding with it.</p>
+    <p style="font-family: Pacifico; color: black; font-size: 20px;">Embedded: PHP code can be easily embedded within HTML tags and script.</p>
+    <p style="font-family: Pacifico; color: black; font-size: 20px;">Platform Independent: PHP is available for WINDOWS, MAC, LINUX & UNIX operating system. A PHP application developed in one OS can be easily executed in other OS also.</p>
+    <p style="font-family: Pacifico; color: black; font-size: 20px;">Database Support: PHP supports all the leading databases such as MySQL, SQLite, ODBC, etc.</p>
+    <p style="font-family: Pacifico; color: black; font-size: 20px;">Error Reporting: PHP has predefined error reporting constants to generate an error notice or warning at runtime. E.g., E_ERROR, E_WARNING, E_STRICT, E_PARSE.</p>
+    <p style="font-family: Pacifico; color: black; font-size: 20px;">Loosely Typed Language: PHP allows us to use a variable without declaring its datatype. It will be taken automatically at the time of execution based on the type of data it contains on its value.</p>
+    <p style="font-family: Pacifico; color: black; font-size: 20px;">Web servers Support: PHP is compatible with almost all local servers used today like Apache, Netscape, Microsoft IIS, etc.</p>
+    <p style="font-family: Pacifico; color: black; font-size: 20px;">Security: PHP is a secure language to develop the website. It consists of multiple layers of security to prevent threads and malicious attacks.</p>
+    <p style="font-family: Pacifico; color: black; font-size: 20px;">Control: Different programming languages require long script or code, whereas PHP can do the same work in a few lines of code. It has maximum control over the websites like you can make changes easily whenever you want.</p>
+    <p style="font-family: Pacifico; color: black; font-size: 20px;">A Helpful PHP Community: It has a large community of developers who regularly updates documentation, tutorials, online help, and FAQs. Learning PHP from the communities is one of the significant benefits.</p>
+
+    </div>
+    </div>
+   <script>
+      // Function to toggle between sections
+      function toggleSections() {
+          const section1 = document.getElementById('section1');
+          const section2 = document.getElementById('section2');
+
+          if (section1.classList.contains('active')) {
+              section1.classList.remove('active');
+              section2.classList.add('active');
+          } else {
+              section2.classList.remove('active');
+              section1.classList.add('active');
+          }
+      }
+
+      // Event listener for the toggle button
+      document.getElementById('toggleButton').addEventListener('click', function() {
+          toggleSections();
+      });
+
+      // JavaScript to download video
+      document.getElementById("downloadVideo").addEventListener("click", function() {
+          // Replace 'video_url' with the actual URL of the video file.
+          const videoUrl = "{% static 'videos/Python-Basics.mp4' %}";
+
+          // Create an anchor element to initiate the download.
+          const a = document.createElement("a");
+          a.href = videoUrl;
+          a.download = "video.mp4"; // Provide the desired filename for the video.
+          a.style.display = "none";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+      });
+    </script>
+    </body>
+</html>

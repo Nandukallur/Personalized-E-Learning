@@ -1,0 +1,37 @@
+digraph {
+	node [color="#306998" fontcolor=white shape=ellipse]
+	edge [color=black]
+	bgcolor="#f0f0f0" fontcolor=black
+	node [fontname=Pacifico style=filled]
+// Tree Diagram
+digraph {
+	bgcolor="#f0f0f0" fontcolor=black
+	A [label="Data Types" color="#306998" fontcolor=white fontname=Pacifico penwidth=2 shape=ellipse style=filled]
+	B [label=Numeric color="#FFD43B" fontcolor=black fontname=Pacifico shape=ellipse style=filled]
+	C [label=Text color="#FFD43B" fontcolor=black fontname=Pacifico shape=ellipse style=filled]
+	D [label=Sequence color="#FFD43B" fontcolor=black fontname=Pacifico shape=ellipse style=filled]
+	E [label=Mapping color="#FFD43B" fontcolor=black fontname=Pacifico shape=ellipse style=filled]
+	F [label=Set color="#FFD43B" fontcolor=black fontname=Pacifico shape=ellipse style=filled]
+	G [label=Boolean color="#FFD43B" fontcolor=black fontname=Pacifico shape=ellipse style=filled]
+	H [label=int color="#306998" fontcolor=white fontname=Pacifico shape=box style=filled]
+	I [label=float color="#306998" fontcolor=white fontname=Pacifico shape=box style=filled]
+	J [label=complex color="#306998" fontcolor=white fontname=Pacifico shape=box style=filled]
+	L [label=list color="#306998" fontcolor=white fontname=Pacifico shape=box style=filled]
+	M [label=tuple color="#306998" fontcolor=white fontname=Pacifico shape=box style=filled]
+	N [label=range color="#306998" fontcolor=white fontname=Pacifico shape=box style=filled]
+	O [label=dict color="#306998" fontcolor=white fontname=Pacifico shape=box style=filled]
+	A -> B
+	A -> C
+	A -> D
+	A -> E
+	A -> F
+	A -> G
+	B -> H
+	B -> I
+	B -> J
+	D -> L
+	D -> M
+	D -> N
+	E -> O
+}
+}
