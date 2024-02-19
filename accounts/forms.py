@@ -1,7 +1,7 @@
 from django import forms
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
-
+from .models import UploadedFile
 class RegForm(UserCreationForm):
     class Meta:
         model=CustUser
@@ -61,10 +61,6 @@ class StudentFormProfile(forms.ModelForm):
 
 
 
-
-
-
-
 class FeedbackForm(forms.ModelForm):
     class Meta:
         model = Feedback
@@ -74,3 +70,8 @@ class FeedbackForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={'placeholder': 'Enter your email'}),
             'message': forms.Textarea(attrs={'placeholder': 'Enter your feedback'}),
         }
+
+class ProjectUploadForm(forms.ModelForm):
+    class Meta:
+        model = UploadedFile
+        fields = ['file', 'project_name', 'project_language', 'git_link', 'project_description']

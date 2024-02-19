@@ -29,6 +29,7 @@ urlpatterns =[
     path('feedies/',feedback, name='feedback'),
     path('submitfeedback/',submit_feedback.as_view(), name='feedbacks'),
     path('feed/',Feedbacks.as_view(),name="feed"),
-    path('contactus/',Contact,name="contact")
+    path('contactus/',Contact,name="contact"),
+    path('project_list/', project_list, name='project_list'),
 
 ]

@@ -657,7 +657,7 @@ def basichtml_section(request):
         request.session['random_questionshtml'] = random_questions
     # else:
     #     random.shuffle(random_questions)
-    
+
     if request.method == 'POST':
         total_marks = 0
         clicked_buttons = request.session.get('clicked_htmlbuttons', [False] * len(random_questions))
@@ -670,8 +670,8 @@ def basichtml_section(request):
                 print(user_answer)
                 if clicked_button:
                     clicked_buttons[i] = True
-                    
-                    correct_answer_index = question_data['answer'] 
+
+                    correct_answer_index = question_data['answer']
                     print(correct_answer_index)
                     correct_answer = question_data['options'][correct_answer_index ]
                     print(correct_answer)
@@ -718,7 +718,7 @@ def intermediatehtml_section(request):
         request.session['random_questions_intermediatehtml'] = random_questions
     # else:
 
-    
+
     if request.method == 'POST':
         total_marks = 0
         clicked_buttons = request.session.get('clicked_buttons', [False] * len(random_questions))
@@ -731,8 +731,8 @@ def intermediatehtml_section(request):
                 # print(user_answer)
                 if clicked_button:
                     clicked_buttons[i] = True
-                    
-                    correct_answer_index = question_data['answer'] 
+
+                    correct_answer_index = question_data['answer']
                     # print(correct_answer_index)
                     correct_answer = question_data['options'][correct_answer_index ]
                     # print(correct_answer)
@@ -778,7 +778,7 @@ def advancedhtml_section(request):
         request.session['random_questions_advancedhtml'] = random_questions
     # else:
     #     random.shuffle(random_questions)
-    
+
     if request.method == 'POST':
         total_marks = 0
         clicked_buttons = request.session.get('clicked_htmlbuttons', [False] * len(random_questions))
@@ -791,8 +791,8 @@ def advancedhtml_section(request):
                 print(user_answer)
                 if clicked_button:
                     clicked_buttons[i] = True
-                    
-                    correct_answer_index = question_data['answer'] 
+
+                    correct_answer_index = question_data['answer']
                     print(correct_answer_index)
                     correct_answer = question_data['options'][correct_answer_index ]
                     print(correct_answer)
@@ -834,6 +834,6 @@ def advanced_text_material(request):
     return render(request,"advancedhtml_learn.html")
 
 
-  
+
 def htmlintro(request):
-    return render(request, "htmlintro.html")
+    return render(request, "htmlintro.html")        

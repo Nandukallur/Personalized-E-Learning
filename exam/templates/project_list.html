@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project List</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .bg-img {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .bg-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .navbar {
+            background: rgb(124,123,123);
+            background: linear-gradient(90deg, rgba(124,123,123,0.9501050420168067) 33%, rgba(237,237,237,1) 98%);
+            color: white;
+            overflow: hidden;
+            padding: 20px ; /* Adjust navbar padding */
+            line-height: 2; /* Adjust navbar height */
+        }
+
+        .navbar h2 {
+            margin: 0;
+            color: white; /* Change text color to white */
+            transition: color 0.3s; /* Smooth transition effect */
+        }
+
+        .navbar h2:hover {
+            color: red; /* Change hover color to red */
+        }
+
+        .navbar .hamburger {
+            float: right;
+        }
+
+        .navbar .hamburger a {
+            color: white;
+            margin-left: 10px;
+        }
+
+        .hamburger a:hover {
+            color: lightgray;
+        }
+        /* Define different background colors for even and odd projects */
+        .project-item:nth-child(even) {
+            background-color: #f2f2f2; /* Light gray */
+        }
+
+        .project-item:nth-child(odd) {
+            background-color: #e6e6e6; /* Lighter gray */
+        }
+
+        /* Style other elements as needed */
+        .project-item {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .project-item a {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<section id="one">
+    <nav class="navbar">
+        <div class="nav-logo">
+             <a href="{% url 'h' %}"><h2>E-Learning</h2></a>
+            <div class="hamburger">
+                <a href="#"><i class="far fa-moon white"></i></a>
+                <a href="#"><i class="fas fa-bars"></i></a>
+            </div>
+        </div>
+            </nav>
+</section>
+
+    <h2 style="text-align:center">List of Uploaded Projects</h2>
+    <ul>
+        {% for project in projects %}
+        <li class="project-item">
+            <strong>Project Name:</strong> {{ project.project_name }}<br>
+            <strong>Student Name:</strong> {{ project.student }}<br>
+            <strong>Project Language:</strong> {{ project.project_language }}<br>
+            <strong>Project Git Link:</strong> <a href="{{ project.git_link }}">{{ project.git_link }}</a><br>
+            <strong>Project Description:</strong> {{ project.project_description }}<br>
+            <strong>Uploaded File:</strong> <a href="{% url 'download_project' project.id %}">{{ project.file.name }}</a><br>
+        </li>
+        {% empty %}
+        <li>No projects uploaded yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

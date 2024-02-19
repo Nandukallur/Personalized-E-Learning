@@ -21,9 +21,10 @@ from django.core.mail import send_mail, EmailMessage
 from PIL import Image, ImageDraw, ImageFont
 from io import BytesIO
 from django.contrib import messages
-
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponse
 from django.http import JsonResponse
-from .forms import FeedbackForm
+from .forms import FeedbackForm, ProjectUploadForm
 
 
 # Create your views here.
@@ -163,10 +164,15 @@ def send_certificate_email(request):
     email.send()
     return HttpResponse('Email sent successfully.')
 
+
 def htmlcertificate(request):
     return render(request, 'htmlcertificate.html')
+
+
 def pythoncertificate(request):
     return render(request, 'pythoncertificate.html')
+
+
 def phpcertificate(request):
     return render(request, 'phpcertificate.html')
 
@@ -236,11 +242,11 @@ def send_certificate_email(request):
 
     # Attach the certificate to the email
     email = EmailMessage(
-                'Your Certificate',
-                'Congratulations! You have successfully generated your certificate.',
-                'shibilmsk1@gmail.com',  # Replace with your email address
-                [user.email],  # Send to the authenticated user's email address
-            )
+        'Your Certificate',
+        'Congratulations! You have successfully generated your certificate.',
+        'shibilmsk1@gmail.com',  # Replace with your email address
+        [user.email],  # Send to the authenticated user's email address
+    )
     # Attach the certificate to the email
     email.attach('certificate.png', img_byte_array.getvalue(), 'image/png')
     # Add a success message
@@ -250,6 +256,8 @@ def send_certificate_email(request):
 
     # Return a response indicating the certificate has been sent
     return HttpResponse('Certificate sent to your email.')
+
+
 @login_required
 def download_certificate(request):
     # Your existing code for generating the certificate
@@ -257,7 +265,6 @@ def download_certificate(request):
 
     # Load the existing certificate PNG template
     template_path = 'C:/Users/HP/PycharmProjects/Personalized E-Learning4/Personalized E-Learning/E_Learning/accounts/static/images/htmlcertificate.png'  # Replace with the path to your font file
-
 
     # Create a response object to store the PNG
     response = HttpResponse(content_type='image/png')
@@ -284,7 +291,9 @@ def download_certificate(request):
     # Add a success message
 
     return response
-#for python section
+
+
+# for python section
 @login_required
 def generate_pythoncertificate(request):
     # Your existing code for generating the certificate
@@ -350,11 +359,11 @@ def send_pythoncertificate_email(request):
 
     # Attach the certificate to the email
     email = EmailMessage(
-                'Your Certificate',
-                'Congratulations! You have successfully generated your certificate.',
-                'shibilmsk1@gmail.com',  # Replace with your email address
-                [user.email],  # Send to the authenticated user's email address
-            )
+        'Your Certificate',
+        'Congratulations! You have successfully generated your certificate.',
+        'shibilmsk1@gmail.com',  # Replace with your email address
+        [user.email],  # Send to the authenticated user's email address
+    )
     # Attach the certificate to the email
     email.attach('certificate.png', img_byte_array.getvalue(), 'image/png')
     # Add a success message
@@ -364,6 +373,8 @@ def send_pythoncertificate_email(request):
 
     # Return a response indicating the certificate has been sent
     return HttpResponse('Certificate sent to your email.')
+
+
 @login_required
 def download_pythoncertificate(request):
     # Your existing code for generating the certificate
@@ -371,7 +382,6 @@ def download_pythoncertificate(request):
 
     # Load the existing certificate PNG template
     template_path = 'C:/Users/HP/PycharmProjects/Personalized E-Learning4/Personalized E-Learning/E_Learning/accounts/static/images/pythoncertificate.png'  # Replace with the path to your font file
-
 
     # Create a response object to store the PNG
     response = HttpResponse(content_type='image/png')
@@ -399,7 +409,8 @@ def download_pythoncertificate(request):
 
     return response
 
-#for php section
+
+# for php section
 @login_required
 def generate_phpcertificate(request):
     # Your existing code for generating the certificate
@@ -465,11 +476,11 @@ def send_phpcertificate_email(request):
 
     # Attach the certificate to the email
     email = EmailMessage(
-                'Your Certificate',
-                'Congratulations! You have successfully generated your certificate.',
-                'shibilmsk1@gmail.com',  # Replace with your email address
-                [user.email],  # Send to the authenticated user's email address
-            )
+        'Your Certificate',
+        'Congratulations! You have successfully generated your certificate.',
+        'shibilmsk1@gmail.com',  # Replace with your email address
+        [user.email],  # Send to the authenticated user's email address
+    )
     # Attach the certificate to the email
     email.attach('certificate.png', img_byte_array.getvalue(), 'image/png')
     # Add a success message
@@ -479,6 +490,8 @@ def send_phpcertificate_email(request):
 
     # Return a response indicating the certificate has been sent
     return HttpResponse('Certificate sent to your email.')
+
+
 @login_required
 def download_phpcertificate(request):
     # Your existing code for generating the certificate
@@ -486,7 +499,6 @@ def download_phpcertificate(request):
 
     # Load the existing certificate PNG template
     template_path = 'C:/Users/HP/PycharmProjects/Personalized E-Learning4/Personalized E-Learning/E_Learning/accounts/static/images/phpcertificate.png'  # Replace with the path to your font file
-
 
     # Create a response object to store the PNG
     response = HttpResponse(content_type='image/png')
@@ -515,21 +527,21 @@ def download_phpcertificate(request):
     return response
 
 
-
 # views.py
 def feedback(request):
     feedback_data = Feedback.objects.all()
     return render(request, 'thankyou.html', {'feedback_data': feedback_data})
 
+
 # views.py
 
 
 class submit_feedback(CreateView):
-    template_name="feedback.html"
-    model=Feedback
-    form_class=FeedbackForm
-    success_url=reverse_lazy("feedback")
-    
+    template_name = "feedback.html"
+    model = Feedback
+    form_class = FeedbackForm
+    success_url = reverse_lazy("feedback")
+
 
 # def submit_feedback(request):
 #     if request.method == 'POST':
@@ -545,16 +557,37 @@ class submit_feedback(CreateView):
 
 
 class Feedbacks(TemplateView):
-    template_name="feedback.html"
+    template_name = "feedback.html"
 
 
 def Contact(request):
     return render(request, "contactus.html")
 
 
+@login_required
+def upload_project(request):
+    if request.method == 'POST':
+        form = ProjectUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Associate the uploaded project with the authenticated user
+            project = form.save(commit=False)  # Don't save to database yet
+            project.student = request.user  # Associate with the authenticated user
+            project.save()  # Now save to database
+            return redirect('project_list')  # Redirect to file list page after successful upload
+    else:
+        form = ProjectUploadForm()  # Create a new form instance if not a POST request
+    return render(request, 'upload_project.html', {'form': form})  # Render the form template
 
 
+def project_list(request):
+    projects = UploadedFile.objects.all()
 
+    return render(request, 'project_list.html', {'projects': projects})
 
-
-
+def download_project(request, project_id):
+    project = get_object_or_404(UploadedFile, pk=project_id)
+    file_path = project.file.path
+    with open(file_path, 'rb') as f:
+        response = HttpResponse(f.read(), content_type="application/force-download")
+        response['Content-Disposition'] = 'attachment; filename=%s' % project.file.name.split('/')[-1]
+        return response
