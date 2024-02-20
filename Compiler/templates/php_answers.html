@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Programming Questions</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        ol {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        code {
+            text-align: left;
+            background-color: #f8f8f8;
+            padding: 3px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        ul {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Answers to PHP Programming Questions</h1>
+
+    <ol>
+        <li>
+            <p><strong>1. 
+                Palindrome Checker:
+                Write a PHP function that takes a string as input and checks whether it is a palindrome or not. A palindrome is a word, phrase, or sequence of characters that reads the same backward as forward (ignoring spaces, punctuation, and capitalization).</strong>
+                <code>
+                    <xml>
+                    <ul>
+                    <li>function isPalindrome($str) {</li>
+
+                    <li>....$cleanStr = strtolower(preg_replace('/[^A-Za-z0-9]/', '', $str));</li>
+                        
+
+                    <li>....return $cleanStr === strrev($cleanStr);</li>
+                    <li>}</li>
+                    
+                    <li>echo isPalindrome("radar") ? "Palindrome" : "Not a palindrome"; // Output: Palindrome</li>
+                    <li>echo isPalindrome("Hello, World!") ? "Palindrome" : "Not a palindrome"; // Output: Palindrome</li>
+                    <li>echo isPalindrome("OpenAI") ? "Palindrome" : "Not a palindrome"; // Output: Not a palindrome</li>
+                </ul>
+                </xml>                    
+                </code>
+            </p>
+        </li>
+
+        <li>
+            <p><strong>2. 
+                Write a PHP program that prints the numbers from 1 to 100. But for multiples of three, print "Fizz" instead of the number, and for the multiples of five, print "Buzz". For numbers that are multiples of both three and five, print "FizzBuzz". </strong>
+                <code>
+                    <ul>
+                    <li>for ($i = 1; $i <= 100; $i++) {</li>
+                    <li>....if ($i % 3 === 0 && $i % 5 === 0) {</li>
+                    <li>........echo "FizzBuzz\n";</li>
+                    <li>....} elseif ($i % 3 === 0) {</li>
+                    <li>........echo "Fizz\n";</li>
+                    <li>....} elseif ($i % 5 === 0) {</li>
+                    <li>........echo "Buzz\n";</li>
+                    <li>....} else {</li>
+                    <li>........echo "$i\n";</li>
+                    <li>....}</li>
+                    <li>}</li>
+                    </ul>
+                </code>
+            </p>
+        </li>
+
+        <li>
+            <p><strong>3.
+                Write a PHP script that reads the contents of a text file and outputs the number of lines, words, and characters in the file. You can use any text file for testing.</strong> 
+                <code>
+                    <ul>
+                    <li>$filePath = 'path/to/your/text/file.txt';</li>
+                    <li>if (file_exists($filePath)) {</li>
+                    <li>....$content = file_get_contents($filePath);</li>
+                    <li>....$lineCount = count(explode("\n", $content));</li>
+                    <li>....$wordCount = str_word_count($content);</li>
+                    <li>....$charCount = strlen($content);</li>
+                    <li></li>
+                    <li>....echo "Number of lines: $lineCount\n";</li>
+                    <li>....echo "Number of words: $wordCount\n";</li>
+                    <li>....echo "Number of characters: $charCount\n";</li>
+                    <li>} else {</li>
+                    <li>....echo "The specified file does not exist.";</li>
+                    <li>}</li>
+                    </ul>
+                </code>
+                
+            </p>
+        </li>
+
+        <li>
+            <p><strong>4.
+                Factorial Calculator:
+                Write a PHP function to calculate the factorial of a given non-negative integer.</strong> 
+                <code>
+                    <ul>
+                    <li>function factorial($n) {</li>
+                    <li>....if ($n < 0) {</li>
+                    <li>........return "Invalid input. Please provide a non-negative integer.";</li>
+                    <li>....} elseif ($n === 0 || $n === 1) {</li>
+                    <li>........return 1;</li>
+                    <li>....} else {</li>    
+                    <li>........return $n * factorial($n - 1);</li>
+                    <li>....}</li>
+                    <li>}</li>
+                    <li></li>
+                    <li>echo factorial(5);</li>
+                    <li>echo factorial(0);</li>
+                    <li>echo factorial(8);</li>
+                    </ul>
+                </code>
+            </p>
+        </li>
+
+        <li>
+            <p><strong>5. 
+                Write a PHP function that checks if a given number is a prime number.</strong>
+                <code>
+                    <ul>
+                    <li>function isPrime($num) {</li>
+                    <li>....if ($num < 2) {</li>
+                    <li>........return false;</li>
+                    <li>....}</li>
+                    <li>....for ($i = 2; $i <= sqrt($num); $i++) {</li>
+                    <li>........if ($num % $i === 0) {</li>
+                    <li>............return false;</li>
+                    <li>........}</li>
+                    <li>....}</li>
+                    <li>....return true;</li>
+                    <li>}</li>
+                    <li></li>
+                    <li>echo isPrime(17) ? "Prime" : "Not Prime";</li>
+                    <li>echo isPrime(6) ? "Prime" : "Not Prime";</li>
+                    <li>echo isPrime(13) ? "Prime" : "Not Prime";</li>
+                    </ul>
+                </code>
+            </p>
+        </li>
+
+        <li>
+            <p><strong>6.
+                Write a PHP function to reverse a string without using the strrev() function.</strong> 
+                <code>
+                    <ul>
+                    <li>function reverseString($str) {</li>
+                    <li>....$length = strlen($str);</li>
+                    <li>....$reversed = '';</li>
+                    <li>....for ($i = $length - 1; $i >= 0; $i--) {</li>
+                    <li>........$reversed .= $str[$i];</li>
+                    <li>....}</li>
+                    <li>....return$reversed;</li>
+                    <li>}</li>
+                    <li>echo reverseString("hello");</li>
+                    </ul>
+                </code>
+            </p>
+        </li>
+
+        <li>
+            <p><strong>7. 
+                Write a PHP function that takes an array of numbers as input and calculates the sum and average of the numbers.</strong>
+                <code>
+                    <ul>
+                    <li>function calculateSumAndAverage($numbers) {</li>
+                    <li>....$count = count($numbers);</li>
+                    <li>....if ($count === 0) {</li>
+                    <li>........if ($count === 0) {</li>
+                    <li>}</li>
+                    <li>....$sum = array_sum($numbers);</li>
+                    <li>....$average = $sum / $count;</li>
+                    <li>....return [</li>
+                    <li>........'sum' => $sum,</li>
+                    <li>........'average' => $average,</li>
+                    <li>....];</li>
+                    <li>}</li>
+                    <li></li>
+                    <li>$numbers = [5, 10, 15, 20];</li>
+                    <li>$result = calculateSumAndAverage($numbers);</li>
+                    <li>if (is_array($result)) {</li>
+                    <li>....echo "Sum: {$result['sum']}, Average: {$result['average']}";</li>
+                    <li>} else {</li>
+                    <li>....echo $result;</li>
+                    <li>}</li>
+                    </ul>
+                </code>
+            </p>
+        </li>
+
+        <li>
+            <p><strong>8. 
+          Write a PHP function that parses a URL into its components (scheme, host, path, query parameters, etc.).</strong>  
+                <code>
+                    <ul>
+                    <li>function parseURL($url) {</li>
+                    <li>....$parsedURL = parse_url($url);</li>
+                    <li>....if ($parsedURL === false) {</li>
+                    <li>........return "Invalid URL format.";</li>
+                    <li>....}</li>
+                    <li>....return [</li>
+                    <li>........'scheme' => isset($parsedURL['scheme']) ? $parsedURL['scheme'] : null,</li>
+                    <li>........'host' => isset($parsedURL['host']) ? $parsedURL['host'] : null,</li>
+                    <li>........'path' => isset($parsedURL['path']) ? $parsedURL['path'] : null,</li>
+                    <li>........'query' => isset($parsedURL['query']) ? $parsedURL['query'] : null,</li>
+                    <li>.......'fragment' => isset($parsedURL['fragment']) ? $parsedURL['fragment'] : null,</li>
+                    <li>.....];</li>
+                    <li>}</li>
+                    <li></li>
+                    <li>$url = "https://www.example.com/path?param1=value1&param2=value2#section";</li>
+                    <li>$result = parseURL($url);</li>
+                    <li>if (is_array($result)) {</li>
+                    <li>....print_r($result);</li>
+                    <li>} else {</li>
+                    <li>....echo $result;</li>
+                    <li>}</li>
+                    </ul>
+                </code>
+            </p>
+        </li>
+    </ol>
+</body>
+</html>

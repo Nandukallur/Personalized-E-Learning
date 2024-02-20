@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <title>PyCompiler</title>
+    <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 20px;
+      background-color: #f5f5f5;
+      text-align: center;
+  }
+
+  h1 {
+      color: #333;
+  }
+
+  ol {
+      list-style-type: none;
+      padding: 0;
+  }
+
+  li {
+      text-align: left;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 5px;
+  }
+
+  code {
+      text-align: left;
+      background-color: #f8f8f8;
+      padding: 3px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+  }
+
+  .vstack > div {
+      text-align: center;
+      background-color: #e0e0e0; /* Light gray background color */
+      border-radius: 0px; /* Rounded corners for a better appearance */
+      padding: 10px; /* Adjusted padding for spacing inside the items */
+      margin-bottom: 5px; /* Reduced margin between items for spacing */
+      transition: background-color 0.3s ease; /* Smooth transition for background color change */
+      max-width: 300px; /* Reduced maximum width for each item */
+      overflow: hidden; /* Hide overflowing content */
+      text-overflow: ellipsis; /* Show ellipsis for overflow text */
+      white-space: nowrap; /* Prevent text from wrapping */
+  }
+
+  .vstack > div:hover {
+      background-color: #33cbd6; /* Darker gray background color on hover */
+  }
+
+  .questions {
+      margin-top: -10px;
+  }
+
+
+    </style>
+  </head>
+  <body style="font-family:Verdana;"><br>
+
+    <div class="qustions">
+    <h1>HTML Programming Questions</h1>
+
+    <ol>
+        <li>Write a HTML program to design a form which should
+            allow to enter your personal data
+             ( Hint: make use of text field, password field, e-mail, lists, radio buttons,
+            checkboxes, submit button)</li>
+
+        <li>Write html code to generate following output.
+            <ul>
+            <li>Coffee</li>
+            <li>Tea</li>
+                <ul>
+                    <li>Black Tea</li>
+                    <li>Green Tea</li>
+                </ul>
+            <li>Milk</li>
+        </ul>
+         </li>
+
+        <li>Create an html page with 7 separate lines in different colors. State
+            color of each line in its text.
+        </li>
+
+        <li>
+            Create an html page with following specifications
+            Title should be about myCity Place your City name at the top of the
+           page in large text and in blue color Add names of landmarks in your city
+           each in a different color, style and typeface One of the landmark, your
+           college name should be blinking . Add scrolling text with a message of
+           your choice.
+        </li>
+    </ol>
+  </div>
+
+
+<div class="vstack gap-3">
+            <div class="p-2"><a href="{% url 'htmlanswers' %}">Check Answers</a></div>
+          </div>
+
+  </body>
+</html>
