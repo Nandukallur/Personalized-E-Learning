@@ -579,10 +579,27 @@ def upload_project(request):
     return render(request, 'upload_project.html', {'form': form})  # Render the form template
 
 
+
+
+@login_required
+def upload_project3(request):
+    if request.method == 'POST':
+        form = ProjectUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Associate the uploaded project with the authenticated user
+            project = form.save(commit=False)  # Don't save to database yet
+            project.student = request.user  # Associate with the authenticated user
+            project.save()  # Now save to database
+            return redirect('project_list')  # Redirect to file list page after successful upload
+    else:
+        form = ProjectUploadForm()  # Create a new form instance if not a POST request
+    return render(request, 'upload_project3.html', {'form': form})  # Render the form template
+
 def project_list(request):
     projects = UploadedFile.objects.all()
 
     return render(request, 'project_list.html', {'projects': projects})
+
 
 def download_project(request, project_id):
     project = get_object_or_404(UploadedFile, pk=project_id)

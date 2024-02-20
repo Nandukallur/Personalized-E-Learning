@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project List</title>
+
     <style>
-         body {
+        body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-        }
 
-        .bg-img {
+        }
+                .bg-img {
             position: fixed;
             top: 0;
             left: 0;
@@ -26,85 +28,112 @@
             object-fit: cover;
         }
 
+
         .navbar {
             background: rgb(124,123,123);
             background: linear-gradient(90deg, rgba(124,123,123,0.9501050420168067) 33%, rgba(237,237,237,1) 98%);
             color: white;
-            overflow: hidden;
-            padding: 20px ; /* Adjust navbar padding */
-            line-height: 2; /* Adjust navbar height */
+            padding: 20px; /* Adjust padding */
         }
 
         .navbar h2 {
             margin: 0;
-            color: white; /* Change text color to white */
-            transition: color 0.3s; /* Smooth transition effect */
+            color: white;
+            transition: color 0.3s;
         }
 
         .navbar h2:hover {
-            color: red; /* Change hover color to red */
+            color: #FF0000; /* Change hover color to red */
         }
 
-        .navbar .hamburger {
-            float: right;
+        /* Styling for the table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white; /* Set table background color */
+            border-radius: 10px; /* Add border radius */
+            overflow: hidden; /* Hide overflow content */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add box shadow */
         }
 
-        .navbar .hamburger a {
-            color: white;
-            margin-left: 10px;
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 12px; /* Adjust padding */
         }
 
-        .hamburger a:hover {
-            color: lightgray;
-        }
-        /* Define different background colors for even and odd projects */
-        .project-item:nth-child(even) {
-            background-color: #f2f2f2; /* Light gray */
-        }
-
-        .project-item:nth-child(odd) {
-            background-color: #e6e6e6; /* Lighter gray */
+        th {
+            background-color: #f2f2f2; /* Light gray background for header row */
         }
 
         /* Style other elements as needed */
-        .project-item {
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-        }
-
         .project-item a {
             color: blue;
+            text-decoration: none; /* Remove underline from links */
+        }
+
+        /* Style alternate rows */
+        tr:nth-child(even) {
+            background-color: #f9f9f9; /* Light gray background for even rows */
+        }
+
+        tr:hover {
+            background-color: #f2f2f2; /* Darker gray background on hover */
+        }
+
+        /* Add margin to the container */
+        .container {
+            margin: 20px;
         }
     </style>
 </head>
 <body>
-<section id="one">
-    <nav class="navbar">
-        <div class="nav-logo">
-             <a href="{% url 'h' %}"><h2>E-Learning</h2></a>
-            <div class="hamburger">
-                <a href="#"><i class="far fa-moon white"></i></a>
-                <a href="#"><i class="fas fa-bars"></i></a>
+    <section id="one">
+        <nav class="navbar">
+            <div class="nav-logo">
+                <a href="{% url 'h' %}"><h2>E-Learning</h2></a>
             </div>
-        </div>
-            </nav>
-</section>
+        </nav>
+    </section>
+<div class="bg-img">
+    <img src="{% static 'images/learning.jpg' %}" alt="no image">
+</div>
+    <div class="container">
+        <h2 style="text-align:center">List of Uploaded Projects</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Project Name</th>
+                    <th>Student Name</th>
+                    <th>Project Language</th>
+                    <th>Project Git Link</th>
+                    <th>Project Description</th>
+                    <th>Uploaded File</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for project in projects %}
+                <tr>
+                    <td>{{ project.project_name }}</td>
+                    <td>{{ project.student }}</td>
+                    <td>{{ project.project_language }}</td>
+                    <td><a href="{{ project.git_link }}">{{ project.git_link }}</a></td>
+                    <td>{{ project.project_description }}</td>
+                    <td><a href="{% url 'download_project' project.id %}">{{ project.file.name }}</a></td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6">No projects uploaded yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-    <h2 style="text-align:center">List of Uploaded Projects</h2>
-    <ul>
-        {% for project in projects %}
-        <li class="project-item">
-            <strong>Project Name:</strong> {{ project.project_name }}<br>
-            <strong>Student Name:</strong> {{ project.student }}<br>
-            <strong>Project Language:</strong> {{ project.project_language }}<br>
-            <strong>Project Git Link:</strong> <a href="{{ project.git_link }}">{{ project.git_link }}</a><br>
-            <strong>Project Description:</strong> {{ project.project_description }}<br>
-            <strong>Uploaded File:</strong> <a href="{% url 'download_project' project.id %}">{{ project.file.name }}</a><br>
-        </li>
-        {% empty %}
-        <li>No projects uploaded yet.</li>
-        {% endfor %}
-    </ul>
+    <!-- Include Bootstrap JS if needed -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Include your custom JavaScript file -->
+    <script src="{% static 'js/home.js' %}"></script>
 </body>
 </html>

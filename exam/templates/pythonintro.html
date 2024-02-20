@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Python Intermediate</title>
+    <title>Python Introduction</title>
     <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -133,11 +133,10 @@
             background-color: #33cbd6; /* Darker gray background color on hover */
         }
     </style>
-    </style>
+
 
 </head>
 <body>
-    {% load static %}
     {% load static %}
 
 <section id="one">
@@ -283,13 +282,28 @@
             </li> -->
 
 
-        <div class="vstack gap-3">
+               <div class="vstack gap-3">
             <div class="p-2"><a href="{% url 'basic' %}">Basic Section</a></div>
-            <div class="p-2"><a href="{% url 'inter' %}">Intermediate</a></div>
-            <div class="p-2"><a href="{% url 'adv' %}">Advanced</a></div>
+            {% for i in data %}
+                {% if i.section == 'Intermediate' and i.score > 7 %}
+                    <div class="p-2"><a href="{% url 'inter' %}">Intermediate</a></div>
+
+                {% endif %}
+            {% empty %}
+                <div class="p-2"><a href="#">Intermediate</a></div>
+            {% endfor %}
+            {% for i in data %}
+                {% if i.section == 'Advanced' and i.score > 7 %}
+                    <div class="p-2"><a href="{% url 'adv' %}">Advanced</a></div>
+
+                {% endif %}
+            {% empty %}
+                <div class="p-2"><a href="#">Advanced</a></div>
+            {% endfor %}
             <div class="p-2"><a href="#">Coding</a></div>
             <div class="p-2"><a href="{% url 'upload_project' %}">Project</a></div>
-          </div>
+        </div>
+
         
     </div>
 

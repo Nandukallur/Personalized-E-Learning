@@ -65,12 +65,13 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            top: 50px;
             height: 70vh;
-            background-color: white;
+            background-color: #d8e6e5;
             padding: 20px;
             border-radius: 10px; /* Added border-radius */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 500px; /* Added maximum width */
+            max-width: 600px; /* Added maximum width */
             margin: 0 auto; /* Center the container horizontally */
         }
 
@@ -119,7 +120,7 @@
     </nav>
 </section>
 <div class="bg-img">
-    <img src="{% static 'images/project.jpg' %}" alt="no image">
+    <img src="{% static 'images/learning.jpg' %}" alt="no image">
 </div>
 <div class="container">
     <h2>Upload Project</h2>
@@ -129,11 +130,11 @@
         <label for="sample_question">Select a Sample Question:</label>
         <select id="sample_question" name="sample_question">
             <option value="" selected disabled>Select a Sample Question</option>
-            <option value="Question 1">Question 1: Write a program to calculate factorial of a number.</option>
-            <option value="Question 2">Question 2: Implement a function to reverse a string.</option>
-            <option value="Question 3">Question 3: Create a script to generate Fibonacci series.</option>
-            <option value="Question 4">Question 4: Develop a program to sort a list of integers.</option>
-            <option value="Question 5">Question 5: Write a function to check if a given string is a palindrome.</option>
+            <option value="Question 1">Question 1: implement a To-Do List Application.</option>
+            <option value="Question 2">Question 2: Create a Calculator app.</option>
+            <option value="Question 3">Question 3: Create a Quiz App.</option>
+            <option value="Question 4">Question 4: Develop a Password Generator app.</option>
+            <option value="Question 5">Question 5: Develop a URL Shortener app.</option>
         </select>
 
         <label for="id_project_name">Project Name:</label>
@@ -142,7 +143,7 @@
         <label for="id_file">File:</label>
         {{ form.file }}
 
-        <label for="id_project_language">Project Language:</label>
+        <label for="id_project_language">Project coding Language:</label>
         {{ form.project_language }}
 
         <label for="id_git_link">Git Link:</label>

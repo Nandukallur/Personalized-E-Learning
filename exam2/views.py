@@ -1,11 +1,17 @@
 from django.shortcuts import render
-
+from django.shortcuts import render, redirect
+from django.views.generic import TemplateView
+import random
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from accounts.forms import FeedbackForm, ProjectUploadForm
 # Create your views here.
 
 html_questions = [
     {
         'question': 'What does HTML stand for?',
-        'options': ['Hyper Trainer Marking Language', 'Hyper Text Markup Language', 'Hyper Text Managing Language', 'Hyper Text Marketing Language'],
+        'options': ['Hyper Trainer Marking Language', 'Hyper Text Markup Language', 'Hyper Text Managing Language',
+                    'Hyper Text Marketing Language'],
         'answer': 1,
         'mark': 1
     },
@@ -23,7 +29,8 @@ html_questions = [
     },
     {
         'question': 'What does the HTML attribute "href" define?',
-        'options': ['The hypertext reference of the link', 'The header of the page', 'The heading of the link', 'The hierarchy of the page'],
+        'options': ['The hypertext reference of the link', 'The header of the page', 'The heading of the link',
+                    'The hierarchy of the page'],
         'answer': 0,
         'mark': 1
     },
@@ -35,7 +42,8 @@ html_questions = [
     },
     {
         'question': 'What does the acronym HTML represent?',
-        'options': ['Hyperlinks and Text Markup Language', 'Hyper Text Markup Language', 'Hyper Text Model Language', 'High Text Markup Language'],
+        'options': ['Hyperlinks and Text Markup Language', 'Hyper Text Markup Language', 'Hyper Text Model Language',
+                    'High Text Markup Language'],
         'answer': 1,
         'mark': 1
     },
@@ -53,7 +61,7 @@ html_questions = [
     },
     {
         'question': 'What is the HTML element used to define important text?',
-        'options': ['<important>', '<em>','<strong>', '<bold>'],
+        'options': ['<important>', '<em>', '<strong>', '<bold>'],
         'answer': 2,
         'mark': 1
     },
@@ -65,7 +73,8 @@ html_questions = [
     },
     {
         'question': 'What is the correct HTML for inserting a comment?',
-        'options': ['<!--This is a comment-->', '<?--This is a comment-->', '<!---This is a comment---!>', '<#This is a comment#>'],
+        'options': ['<!--This is a comment-->', '<?--This is a comment-->', '<!---This is a comment---!>',
+                    '<#This is a comment#>'],
         'answer': 0,
         'mark': 1
     },
@@ -83,7 +92,8 @@ html_questions = [
     },
     {
         'question': 'What is the purpose of the HTML <meta> tag?',
-        'options': ['To define metadata about an HTML document', 'To display images in the browser', 'To define a hyperlink', 'To format text'],
+        'options': ['To define metadata about an HTML document', 'To display images in the browser',
+                    'To define a hyperlink', 'To format text'],
         'answer': 0,
         'mark': 1
     },
@@ -95,7 +105,10 @@ html_questions = [
     },
     {
         'question': 'What is the correct HTML for creating a hyperlink?',
-        'options': ['<a href="http://www.example.com">Click here</a>', '<link href="http://www.example.com">Click here</link>', '<href>http://www.example.com</href>Click here</a>', '<a link="http://www.example.com">Click here</a>'],
+        'options': ['<a href="http://www.example.com">Click here</a>',
+                    '<link href="http://www.example.com">Click here</link>',
+                    '<href>http://www.example.com</href>Click here</a>',
+                    '<a link="http://www.example.com">Click here</a>'],
         'answer': 0,
         'mark': 1
     },
@@ -107,7 +120,8 @@ html_questions = [
     },
     {
         'question': 'What does the HTML <aside> tag represent?',
-        'options': ['A secondary header', 'An image gallery', 'A section of content aside from the main content', 'An important section'],
+        'options': ['A secondary header', 'An image gallery', 'A section of content aside from the main content',
+                    'An important section'],
         'answer': 2,
         'mark': 1
     },
@@ -119,7 +133,8 @@ html_questions = [
     },
     {
         'question': 'What does the HTML <nav> tag define?',
-        'options': ['An area of navigation links', 'A new webpage', 'A navigation bar', 'A section to input navigation commands'],
+        'options': ['An area of navigation links', 'A new webpage', 'A navigation bar',
+                    'A section to input navigation commands'],
         'answer': 1,
         'mark': 1
     },
@@ -137,23 +152,26 @@ html_questions = [
     },
 ]
 
-
 html_intermediate_questions = [
     {
         'question': 'What is the purpose of the HTML5 <canvas> element?',
-        'options': ['To draw graphics, animations, and other visual images on the fly using JavaScript', 'To display a gallery of images', 'To embed audio files in a webpage', 'To create hyperlinks between web pages'],
+        'options': ['To draw graphics, animations, and other visual images on the fly using JavaScript',
+                    'To display a gallery of images', 'To embed audio files in a webpage',
+                    'To create hyperlinks between web pages'],
         'answer': 0,
         'mark': 1
     },
     {
         'question': 'What does the HTML5 <article> tag represent?',
-        'options': ['An external resource', 'An independent piece of content that can stand alone', 'A list of articles', 'A footer section'],
+        'options': ['An external resource', 'An independent piece of content that can stand alone',
+                    'A list of articles', 'A footer section'],
         'answer': 1,
         'mark': 1
     },
     {
         'question': 'What is the purpose of the HTML5 <section> tag?',
-        'options': ['To define a section of content within a document', 'To create a hyperlink', 'To specify a footer section', 'To insert a video'],
+        'options': ['To define a section of content within a document', 'To create a hyperlink',
+                    'To specify a footer section', 'To insert a video'],
         'answer': 0,
         'mark': 1
     },
@@ -165,13 +183,15 @@ html_intermediate_questions = [
     },
     {
         'question': 'What does the HTML <figure> tag represent?',
-        'options': ['An important piece of content', 'A multimedia element, such as an image or video, with a caption', 'A link to a separate document', 'A navigation bar'],
+        'options': ['An important piece of content', 'A multimedia element, such as an image or video, with a caption',
+                    'A link to a separate document', 'A navigation bar'],
         'answer': 1,
         'mark': 1
     },
     {
         'question': 'What is the purpose of the HTML <details> tag?',
-        'options': ['To define a list of details', 'To specify a summary of a document', 'To create an accordion-like widget', 'To define the structure of a table'],
+        'options': ['To define a list of details', 'To specify a summary of a document',
+                    'To create an accordion-like widget', 'To define the structure of a table'],
         'answer': 2,
         'mark': 1
     },
@@ -195,37 +215,44 @@ html_intermediate_questions = [
     },
     {
         'question': 'What is the purpose of the HTML5 <progress> element?',
-        'options': ['To display the progress of a file download', 'To create a progress bar', 'To track user interactions on a webpage', 'To show the completion of a form'],
+        'options': ['To display the progress of a file download', 'To create a progress bar',
+                    'To track user interactions on a webpage', 'To show the completion of a form'],
         'answer': 1,
         'mark': 1
     },
     {
         'question': 'What is the purpose of the HTML <footer> tag?',
-        'options': ['To define the footer section of a document or a section', 'To create a section at the bottom of the page for links', 'To insert a footer image', 'To highlight important content at the bottom'],
+        'options': ['To define the footer section of a document or a section',
+                    'To create a section at the bottom of the page for links', 'To insert a footer image',
+                    'To highlight important content at the bottom'],
         'answer': 0,
         'mark': 1
     },
     {
         'question': 'What is the role of the HTML5 <header> tag?',
-        'options': ['To define the introductory content at the beginning of a document or section', 'To add a header image to the webpage', 'To create a navigation bar', 'To create a footer'],
+        'options': ['To define the introductory content at the beginning of a document or section',
+                    'To add a header image to the webpage', 'To create a navigation bar', 'To create a footer'],
         'answer': 0,
         'mark': 1
     },
     {
         'question': 'What does the HTML5 <nav> tag represent?',
-        'options': ['A section for navigation links', 'A list of articles', 'An external resource', 'A multimedia element'],
+        'options': ['A section for navigation links', 'A list of articles', 'An external resource',
+                    'A multimedia element'],
         'answer': 0,
         'mark': 1
     },
     {
         'question': 'What is the purpose of the HTML <abbr> tag?',
-        'options': ['To define an abbreviation or an acronym', 'To create a hyperlink', 'To specify an external link', 'To highlight important text'],
+        'options': ['To define an abbreviation or an acronym', 'To create a hyperlink', 'To specify an external link',
+                    'To highlight important text'],
         'answer': 0,
         'mark': 1
     },
     {
         'question': 'What does the HTML <blockquote> tag indicate?',
-        'options': ['An important block of text', 'A code snippet', 'A quotation from another source', 'A highlighted paragraph'],
+        'options': ['An important block of text', 'A code snippet', 'A quotation from another source',
+                    'A highlighted paragraph'],
         'answer': 2,
         'mark': 1
     },
@@ -237,13 +264,15 @@ html_intermediate_questions = [
     },
     {
         'question': 'What does the HTML <cite> tag represent?',
-        'options': ['A reference to a citation or creative work', 'A highlighted text', 'A block of code', 'An emphasized text'],
+        'options': ['A reference to a citation or creative work', 'A highlighted text', 'A block of code',
+                    'An emphasized text'],
         'answer': 0,
         'mark': 1
     },
     {
         'question': 'In HTML, what is the function of the <kbd> tag?',
-        'options': ['To define keyboard input', 'To highlight text', 'To insert a hyperlink', 'To display a code snippet'],
+        'options': ['To define keyboard input', 'To highlight text', 'To insert a hyperlink',
+                    'To display a code snippet'],
         'answer': 0,
         'mark': 1
     },
@@ -255,31 +284,36 @@ html_intermediate_questions = [
     },
     {
         'question': 'What is the purpose of the HTML5 <output> tag?',
-        'options': ['To display the output of a calculation or script', 'To create a summary of a document', 'To show a list of outputs', 'To generate a footer section'],
+        'options': ['To display the output of a calculation or script', 'To create a summary of a document',
+                    'To show a list of outputs', 'To generate a footer section'],
         'answer': 0,
         'mark': 1
     },
     {
         'question': 'What does the HTML <datalist> element define?',
-        'options': ['A list of predefined options for input controls', 'A section for displaying data', 'A dropdown list for dates', 'A list of data sources'],
+        'options': ['A list of predefined options for input controls', 'A section for displaying data',
+                    'A dropdown list for dates', 'A list of data sources'],
         'answer': 0,
         'mark': 1
     },
     {
         'question': 'What does the HTML5 <mark> tag represent?',
-        'options': ['An important section', 'A highlighted text or section', 'A link to related content', 'A block of code'],
+        'options': ['An important section', 'A highlighted text or section', 'A link to related content',
+                    'A block of code'],
         'answer': 1,
         'mark': 1
     },
     {
         'question': 'In HTML, what is the role of the <fieldset> tag?',
-        'options': ['To group related form elements and their labels', 'To define a footer', 'To create a navigation section', 'To display a set of images'],
+        'options': ['To group related form elements and their labels', 'To define a footer',
+                    'To create a navigation section', 'To display a set of images'],
         'answer': 0,
         'mark': 1
     },
     {
         'question': 'What is the purpose of the HTML5 <aside> element?',
-        'options': ['To represent additional content that is related to the main content', 'To define an external resource', 'To insert a sidebar navigation', 'To display a footer section'],
+        'options': ['To represent additional content that is related to the main content',
+                    'To define an external resource', 'To insert a sidebar navigation', 'To display a footer section'],
         'answer': 0,
         'mark': 1
     },
@@ -291,7 +325,8 @@ html_intermediate_questions = [
     },
     {
         'question': 'What is the purpose of the HTML5 <figcaption> tag?',
-        'options': ['To define a figure in a document', 'To add a caption to an image or figure', 'To create a footer section', 'To highlight important text'],
+        'options': ['To define a figure in a document', 'To add a caption to an image or figure',
+                    'To create a footer section', 'To highlight important text'],
         'answer': 1,
         'mark': 1
     },
@@ -303,7 +338,8 @@ html_intermediate_questions = [
     },
     {
         'question': 'What is the purpose of the HTML5 <time> element with datetime attribute?',
-        'options': ['To represent a specific date and time', 'To create a countdown timer', 'To display the time zone', 'To indicate a past date'],
+        'options': ['To represent a specific date and time', 'To create a countdown timer', 'To display the time zone',
+                    'To indicate a past date'],
         'answer': 0,
         'mark': 1
     },
@@ -315,7 +351,8 @@ html_intermediate_questions = [
     },
     {
         'question': 'What does the HTML5 <meter> tag represent?',
-        'options': ['A measurement within a defined range', 'A unit of measurement', 'A countdown timer', 'A progress bar'],
+        'options': ['A measurement within a defined range', 'A unit of measurement', 'A countdown timer',
+                    'A progress bar'],
         'answer': 0,
         'mark': 1
     }
@@ -639,7 +676,7 @@ html_advanced_questions = [
             'Represents citations or references.'
         ],
         'answer': 0,
-        'mark':1
+        'mark': 1
     },
 
 ]
@@ -648,6 +685,7 @@ from exam.models import TestResult
 import random
 from django.views.generic import TemplateView
 from accounts.models import CustUser
+
 
 def basichtml_section(request):
     random_questions = request.session.get('random_questionshtml')
@@ -673,7 +711,7 @@ def basichtml_section(request):
 
                     correct_answer_index = question_data['answer']
                     print(correct_answer_index)
-                    correct_answer = question_data['options'][correct_answer_index ]
+                    correct_answer = question_data['options'][correct_answer_index]
                     print(correct_answer)
                     if user_answer == correct_answer:
                         total_marks += question_data['mark']
@@ -683,8 +721,8 @@ def basichtml_section(request):
             percentage = (total_marks / max_marks) * 100 if max_marks > 0 else 0
             print(total_marks)
             # TestResult.objects.create(user=request.user, score=total_marks,section="BasicHTML")
-        if total_marks :
-            test_result = TestResult.objects.filter(user=request.user.id,section="BasicHTML").first()
+        if total_marks:
+            test_result = TestResult.objects.filter(user=request.user.id, section="BasicHTML").first()
             if test_result:
                 if total_marks > test_result.score:
                     test_result.score = total_marks
@@ -705,19 +743,15 @@ def basichtml_section(request):
     return render(request, 'basic_html.html', {'random_questions': random_questions})
 
 
-class Basiclearn(TemplateView):
-    template_name='basic_learnhtml.html'
-
-
-
 def intermediatehtml_section(request):
+    scores=TestResult.objects.filter(user=request.user)
+    print(scores)
     random_questions = request.session.get('random_questions_intermediatehtml')
-    print(random_questions)
+
     if not random_questions:
         random_questions = random.sample(html_intermediate_questions, 10)
         request.session['random_questions_intermediatehtml'] = random_questions
     # else:
-
 
     if request.method == 'POST':
         total_marks = 0
@@ -734,7 +768,7 @@ def intermediatehtml_section(request):
 
                     correct_answer_index = question_data['answer']
                     # print(correct_answer_index)
-                    correct_answer = question_data['options'][correct_answer_index ]
+                    correct_answer = question_data['options'][correct_answer_index]
                     # print(correct_answer)
                     if user_answer == correct_answer:
                         total_marks += question_data['mark']
@@ -744,14 +778,14 @@ def intermediatehtml_section(request):
             percentage = (total_marks / max_marks) * 100 if max_marks > 0 else 0
             print(total_marks)
             # TestResult.objects.create(user=request.user, score=total_marks,section="IntermediateHTML")
-        if total_marks :
-            test_result = TestResult.objects.filter(user=request.user,section="IntermediateHTML").first()
+        if total_marks:
+            test_result = TestResult.objects.filter(user=request.user, section="IntermediateHTML").first()
             if test_result:
                 if total_marks > test_result.score:
                     test_result.score = total_marks
                     test_result.save()
             else:
-                TestResult.objects.create(user=request.user, score=total_marks,section="IntermediateHTML")
+                TestResult.objects.create(user=request.user, score=total_marks, section="IntermediateHTML")
             return render(request, 'intermediate_html.html', {
                 'random_questions': random_questions,
                 'total_marks': total_marks,
@@ -762,15 +796,11 @@ def intermediatehtml_section(request):
                 'total_marks': total_marks,
             })
 
-    return render(request, 'intermediate_html.html', {'random_questions': random_questions})
+    return render(request, 'intermediate_html.html', {'random_questions': random_questions,'score':scores})
 
-
-class Intermediatelearn(TemplateView):
-    template_name='intermediatehtml_learn.html'
-
-
-
+@login_required
 def advancedhtml_section(request):
+    scores = TestResult.objects.filter(user=request.user)
     random_questions = request.session.get('random_questions_advancedhtml')
     print(random_questions)
     if not random_questions:
@@ -794,7 +824,7 @@ def advancedhtml_section(request):
 
                     correct_answer_index = question_data['answer']
                     print(correct_answer_index)
-                    correct_answer = question_data['options'][correct_answer_index ]
+                    correct_answer = question_data['options'][correct_answer_index]
                     print(correct_answer)
                     if user_answer == correct_answer:
                         total_marks += question_data['mark']
@@ -804,14 +834,14 @@ def advancedhtml_section(request):
             percentage = (total_marks / max_marks) * 100 if max_marks > 0 else 0
             print(total_marks)
             # TestResult.objects.create(user=request.user, score=total_marks,section="AdvancedHTML")
-        if total_marks :
-            test_result = TestResult.objects.filter(user=request.user,section="AdvancedHTML").first()
+        if total_marks:
+            test_result = TestResult.objects.filter(user=request.user, section="AdvancedHTML").first()
             if test_result:
                 if total_marks > test_result.score:
                     test_result.score = total_marks
                     test_result.save()
             else:
-                TestResult.objects.create(user=request.user, score=total_marks,section="AdvancedHTML")
+                TestResult.objects.create(user=request.user, score=total_marks, section="AdvancedHTML")
             return render(request, 'advanced_html.html', {
                 'random_questions': random_questions,
                 'total_marks': total_marks,
@@ -822,18 +852,51 @@ def advancedhtml_section(request):
                 'total_marks': total_marks,
             })
 
-    return render(request, 'advanced_html.html', {'random_questions': random_questions})
+    return render(request, 'advanced_html.html', {'random_questions': random_questions,'score':scores})
+
 
 class learning_page(TemplateView):
-    template_name="basic_learnhtml.html"
+    template_name = "basic_learnhtml.html"
+
+
+class Basiclearn(TemplateView):
+    template_name = 'basic_learnhtml.html'
+
 
 def intermediate_text_material(request):
-    return render(request,'intermediatehtml_learn.html')
+    return render(request, 'intermediatehtml_learn.html')
+
+
+class Intermediatelearn(TemplateView):
+    template_name = 'intermediatehtml_learn.html'
+
 
 def advanced_text_material(request):
-    return render(request,"advancedhtml_learn.html")
+    return render(request, "advancedhtml_learn.html")
+
+
+# def htmlintro(request):
+#     return render(request, "htmlintro.html")
+class htmlintro(TemplateView):
+    template_name = 'htmlintro.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['data'] = TestResult.objects.filter(user=self.request.user)
+        return context
 
 
 
-def htmlintro(request):
-    return render(request, "htmlintro.html")        
+@login_required
+def upload_project2(request):
+    if request.method == 'POST':
+        form = ProjectUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Associate the uploaded project with the authenticated user
+            project = form.save(commit=False)  # Don't save to database yet
+            project.student = request.user  # Associate with the authenticated user
+            project.save()  # Now save to database
+            return redirect('project_list')  # Redirect to file list page after successful upload
+    else:
+        form = ProjectUploadForm()  # Create a new form instance if not a POST request
+    return render(request, 'upload_project2.html', {'form': form})  # Render the form template

@@ -750,7 +750,7 @@ def intermediate_section(request):
                     test_result.score = total_marks
                     test_result.save()
             else:
-                test = TestResult.objects.create(user=request.user, score=total_marks,section="Intermediate")
+                TestResult.objects.create(user=request.user, score=total_marks,section="Intermediate")
             return render(request, 'intermediate.html', {
                 'random_questions': random_questions,
                 'total_marks': total_marks,
@@ -807,7 +807,7 @@ def advanced_section(request):
                     test_result.score = total_marks
                     test_result.save()
             else:
-                test = TestResult.objects.create(user=request.user, score=total_marks,section="Advanced")
+                TestResult.objects.create(user=request.user, score=total_marks,section="Advanced")
                 
             return render(request, 'advanced.html', {
                 'random_questions': random_questions,
@@ -835,7 +835,14 @@ def advanced_text_material(request):
 def basic_video_material(request):
     return render(request, 'video_basic.html')  
 
-def pythonintro(request):
-    return render(request, "pythonintro.html")
+# def pythonintro(request):
+#     return render(request, "pythonintro.html")
+class pythonintro(TemplateView):
+    template_name = 'pythonintro.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['data'] = TestResult.objects.filter(user=self.request.user)
+        return context
   
 

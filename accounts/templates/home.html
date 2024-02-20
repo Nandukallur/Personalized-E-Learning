@@ -197,6 +197,7 @@
 <!--                      {% endfor %}-->
 <!--                    </div>-->
                   </div>
+
                   <div class="dropdown">
                     <li><button class="dropbtn" > <a  href="{% url 'htmlintro' %}" style="text-decoration: none;">HTML</a></button></li>
 <!--                    <div class="dropdown-content">-->
@@ -213,6 +214,7 @@
 <!--                      {% endfor %}-->
 <!--                    </div>-->
                   </div>
+
                   <div class="dropdown">
                     <li><button class="dropbtn" ><a  href="{% url 'phpintro' %}" style="text-decoration: none;">PHP</a></button></li>
 <!--                    <div class="dropdown-content">-->
@@ -229,35 +231,36 @@
 <!--                      {% endfor %}-->
 <!--                    </div>-->
                   </div>
+                <li><a   href="{% url 'project_list' %}" style="text-decoration: none;">Projects</a></li>
+                <li><a   href="{% url 'ProgressCard' %}" style="text-decoration: none;">Progress Report</a></li>
 
-<!--                <div class="dropdown">-->
-<!--                    <li><button class="dropbtn" ><a  href="{% url 'ScoreTable' %}" style="text-decoration: none;">CERTIFICATE</a></button></li>-->
-<!--                    <div class="dropdown-content">-->
-<!--                    {% for i in data %}-->
-<!--                      {% if i.score > 7 and i.section == 'Advanced' %}-->
-<!--                      <a href="{% url 'pythoncertificate' %}">PYTHON</a>-->
-<!--                        {% endif %}-->
-<!--                      {% endfor %}-->
+                <div class="dropdown">
+                    <li><button class="dropbtn" ><a  href="{% url 'ScoreTable' %}" style="text-decoration: none;">CERTIFICATE</a></button></li>
+                    <div class="dropdown-content">
+                    {% for i in data %}
+                      {% if i.score > 7 and i.section == 'Advanced' %}
+                      <a href="{% url 'pythoncertificate' %}">PYTHON</a>
+                        {% endif %}
+                      {% endfor %}
 
-<!--                    {% for i in data %}-->
-<!--                          {% if i.section == 'AdvancedHTML' and i.score > 7   %}-->
-<!--                      <a href="{% url 'htmlcertificate' %}">HTML Section</a>-->
-<!--                          {% endif %}-->
-<!--                      {% endfor %}-->
+                    {% for i in data %}
+                          {% if i.section == 'AdvancedHTML' and i.score > 7   %}
+                      <a href="{% url 'htmlcertificate' %}">HTML Section</a>
+                          {% endif %}
+                      {% endfor %}
 
-<!--                    {% for i in data %}-->
-<!--                          {% if i.section == 'AdvancedPHP' and i.score > 7   %}-->
-<!--                      <a href="{% url 'htmlcertificate' %}">php certificate</a>-->
-<!--                          {% endif %}-->
-<!--                      {% endfor %}-->
-<!--                    </div>-->
-<!--                </div>-->
+                    {% for i in data %}
+                          {% if i.section == 'AdvancedPHP' and i.score > 7   %}
+                      <a href="{% url 'htmlcertificate' %}">php certificate</a>
+                          {% endif %}
+                      {% endfor %}
+                    </div>
+                </div>
 
                 
 
-                <li><a   href="{% url 'project_list' %}" style="text-decoration: none;">Projects</a></li>
-                <li><a   href="{% url 'ProgressCard' %}" style="text-decoration: none;">Progress Report</a></li>
-                <li><a   href="#" style="text-decoration: none;">certificate</a></li>
+
+
                 <li><a   href="{% url 'feedback' %}" style="text-decoration: none;">Feedback</a></li>
                 <li><a   href="{% url 'contact' %}" style="text-decoration: none;">Contact Us</a></li>
                 <li><a   href="{% url 'log' %}"><span class="material-symbols-outlined">logout
