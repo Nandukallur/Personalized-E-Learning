@@ -320,11 +320,34 @@
     <p>As you explore HTML further, you'll discover its versatility in creating web content and its role in shaping the user interface and experience on the Internet.</p> -->
 
     <div class="vstack gap-3">
-        <div class="p-2"><a href="{% url 'basichtml' %}">Basic Section</a></div>
-        <div class="p-2"><a href="{% url 'interhtml' %}">Intermediate</a></div>
-        <div class="p-2"><a href="{% url 'advhtml' %}">Advanced</a></div>
-        <div class="p-2"><a href="#">Coding</a></div>
-        <div class="p-2"><a href="#">Project</a></div>
-      </div>
+    <div class="p-2"><a href="{% url 'basichtml' %}">Basic Section</a></div>
+    {% for i in data %}
+        {% if i.section == 'IntermediateHTML' and i.score > 7 %}
+            <div class="p-2">
+                <a href="  {% url 'interhtml' %}">Intermediate</a>
+            </div>
+        {% else %}
+        <div class="p-2">
+                <a href="#">Intermediate</a>
+            </div>
+         {% endif %}
+    {% endfor %}
+    {% for i in data %}
+        {% if i.section == "AdvancedHTML" and i.score > 7 %}
+            <div class="p-2">
+                <a href='{% url "advhtml" %}'>Advanced</a>
+            </div>
+        {% else %}
+            <div class="p-2">
+                <a href='#'>Advanced</a>
+            </div>
+        {% endif %}
+    {% endfor %}
+    <div class="p-2"><a href="#">Coding</a></div>
+    <div class="p-2"><a href="{% url 'upload_project2' %}">Project</a></div>
+</div>
+
+        </div>
+    </div>
 </body>
 </html>

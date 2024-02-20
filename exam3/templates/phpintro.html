@@ -147,77 +147,77 @@
                 <a href="#"><i class="fas fa-bars"></i></a>
             </div>
         </div>
-        <ul class="nav-links" style="padding-right: 150px;">
+<!--        <ul class="nav-links" style="padding-right: 150px;">-->
 
-            <li class="dropdown">
-                <button class="dropbtn"><a href="{% url 'pythonintro' %}" style="text-decoration: none;">Python</a></button>
-                <div class="dropdown-content">
-                    <a class="nav-link" href="{% url 'basic' %}">Basic Section</a>
-                    {% for i in data %}
-                        {% if i.section == 'Basic' and i.score > 7 %}
-                            <a href="{% url 'inter' %}">Intermediate Section</a>
-                        {% endif %}
-                    {% endfor %}
-                    {% for i in data %}
-                        {% if i.score > 7 and i.section == 'Intermediate' %}
-                            <a href="{% url 'adv' %}">Advanced Section</a>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </li>
-            <li class="dropdown">
-                <button class="dropbtn"><a href="{% url 'basichtml' %}" style="text-decoration: none;">HTML</a></button>
-                <div class="dropdown-content">
-                    <a class="nav-link" href="{% url 'basichtml' %}">Basic Section</a>
-                    {% for i in data %}
-                        {% if i.section == 'BasicHTML' and i.score > 7 %}
-                            <a href="{% url 'interhtml' %}">Intermediate Section</a>
-                        {% endif %}
-                    {% endfor %}
-                    {% for i in data %}
-                        {% if i.section == 'IntermediateHTML' and i.score > 7 %}
-                            <a href="{% url 'advhtml' %}">Advanced Section</a>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </li>
-            <li class="dropdown">
-                <button class="dropbtn"><a href="{% url 'basicphp' %}" style="text-decoration: none;">PHP</a></button>
-                <div class="dropdown-content">
-                    <a class="nav-link" href="{% url 'basicphp' %}">Basic Section</a>
-                    {% for i in data %}
-                        {% if i.section == 'BasicPHP' and i.score > 7 %}
-                            <a href="{% url 'interphp' %}">Intermediate Section</a>
-                        {% endif %}
-                    {% endfor %}
-                    {% for i in data %}
-                        {% if i.section == 'IntermediatePHP' and i.score > 7 %}
-                            <a href="{% url 'advphp' %}">Advanced Section</a>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </li>
-            <li class="dropdown">
-                <button class="dropbtn"><a href="#" style="text-decoration: none;">CERTIFICATE</a></button>
-                <div class="dropdown-content">
-                    {% for i in data %}
-                        {% if i.score > 7 and i.section == 'Advanced' %}
-                            <a href="{% url 'pythoncertificate' %}">PYTHON</a>
-                        {% endif %}
-                    {% endfor %}
-                    {% for i in data %}
-                        {% if i.section == 'AdvancedHTML' and i.score > 7 %}
-                            <a href="{% url 'htmlcertificate' %}">HTML Section</a>
-                        {% endif %}
-                    {% endfor %}
-                    {% for i in data %}
-                        {% if i.section == 'AdvancedPHP' and i.score > 7 %}
-                            <a href="{% url 'htmlcertificate' %}">php certificate</a>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </li>
-        </ul>
+<!--            <li class="dropdown">-->
+<!--                <button class="dropbtn"><a href="{% url 'pythonintro' %}" style="text-decoration: none;">Python</a></button>-->
+<!--                <div class="dropdown-content">-->
+<!--                    <a class="nav-link" href="{% url 'basic' %}">Basic Section</a>-->
+<!--                    {% for i in data %}-->
+<!--                        {% if i.section == 'Basic' and i.score > 7 %}-->
+<!--                            <a href="{% url 'inter' %}">Intermediate Section</a>-->
+<!--                        {% endif %}-->
+<!--                    {% endfor %}-->
+<!--                    {% for i in data %}-->
+<!--                        {% if i.score > 7 and i.section == 'Intermediate' %}-->
+<!--                            <a href="{% url 'adv' %}">Advanced Section</a>-->
+<!--                        {% endif %}-->
+<!--                    {% endfor %}-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li class="dropdown">-->
+<!--                <button class="dropbtn"><a href="{% url 'basichtml' %}" style="text-decoration: none;">HTML</a></button>-->
+<!--                <div class="dropdown-content">-->
+<!--                    <a class="nav-link" href="{% url 'basichtml' %}">Basic Section</a>-->
+<!--                    {% for i in data %}-->
+<!--                        {% if i.section == 'BasicHTML' and i.score > 7 %}-->
+<!--                            <a href="{% url 'interhtml' %}">Intermediate Section</a>-->
+<!--                        {% endif %}-->
+<!--                    {% endfor %}-->
+<!--                    {% for i in data %}-->
+<!--                        {% if i.section == 'IntermediateHTML' and i.score > 7 %}-->
+<!--                            <a href="{% url 'advhtml' %}">Advanced Section</a>-->
+<!--                        {% endif %}-->
+<!--                    {% endfor %}-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li class="dropdown">-->
+<!--                <button class="dropbtn"><a href="{% url 'basicphp' %}" style="text-decoration: none;">PHP</a></button>-->
+<!--                <div class="dropdown-content">-->
+<!--                    <a class="nav-link" href="{% url 'basicphp' %}">Basic Section</a>-->
+<!--                    {% for i in data %}-->
+<!--                        {% if i.section == 'BasicPHP' and i.score > 7 %}-->
+<!--                            <a href="{% url 'interphp' %}">Intermediate Section</a>-->
+<!--                        {% endif %}-->
+<!--                    {% endfor %}-->
+<!--                    {% for i in data %}-->
+<!--                        {% if i.section == 'IntermediatePHP' and i.score > 7 %}-->
+<!--                            <a href="{% url 'advphp' %}">Advanced Section</a>-->
+<!--                        {% endif %}-->
+<!--                    {% endfor %}-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li class="dropdown">-->
+<!--                <button class="dropbtn"><a href="#" style="text-decoration: none;">CERTIFICATE</a></button>-->
+<!--                <div class="dropdown-content">-->
+<!--                    {% for i in data %}-->
+<!--                        {% if i.score > 7 and i.section == 'Advanced' %}-->
+<!--                            <a href="{% url 'pythoncertificate' %}">PYTHON</a>-->
+<!--                        {% endif %}-->
+<!--                    {% endfor %}-->
+<!--                    {% for i in data %}-->
+<!--                        {% if i.section == 'AdvancedHTML' and i.score > 7 %}-->
+<!--                            <a href="{% url 'htmlcertificate' %}">HTML Section</a>-->
+<!--                        {% endif %}-->
+<!--                    {% endfor %}-->
+<!--                    {% for i in data %}-->
+<!--                        {% if i.section == 'AdvancedPHP' and i.score > 7 %}-->
+<!--                            <a href="{% url 'htmlcertificate' %}">php certificate</a>-->
+<!--                        {% endif %}-->
+<!--                    {% endfor %}-->
+<!--                </div>-->
+<!--            </li>-->
+<!--        </ul>-->
     </nav>
 </section>
 
@@ -305,18 +305,37 @@
             Feel free to delve into PHP's extensive documentation and community resources to unlock its full potential in
             your web development journey.
         </p> -->
+<div class="vstack gap-3">
+    <div class="p-2"><a href="{% url 'basichtml' %}">Basic Section</a></div>
+<!--    {% for i in data %}-->
+        {% if data.section == 'IntermediatePHP' and data.score > 7 %}
+            <div class="p-2"><a href="{% url 'interhtml' %}">Intermediate</a></div>
+        {% endif %}
+    {% empty %}
+        <div class="p-2"><a href="#">Intermediate</a></div>
+<!--    {% endfor %}-->
+<!--    {% for i in data %}-->
+        {% if data.section == 'AdvancedPHP' and data.score > 7 %}
+            <div class="p-2"><a href="{% url 'advhtml' %}">Advanced</a></div>
+        {% endif %}
+    {% empty %}
+        <div class="p-2"><a href="#">Advanced</a></div>
+<!--    {% endfor %}-->
+    <div class="p-2"><a href="#">Coding</a></div>
+    <div class="p-2"><a href="{% url 'upload_project2' %}">Project</a></div>
+</div>
 
-        <div class="vstack gap-3">
-            <div class="p-2"><a href="{% url 'basic' %}">Basic Section</a></div>
-            <div class="p-2"><a href="{% url 'inter' %}">Intermediate</a></div>
-            <div class="p-2"><a href="{% url 'adv' %}">Advanced</a></div>
-            <div class="p-2"><a href="#">Coding</a></div>
-            <div class="p-2"><a href="#">Project</a></div>
-          </div>
+<!--        {% if data.section != 'BasicPHP' and i.score < 7 %}-->
+<!--        <div class="p-2"><a href="#">Intermediate</a></div>-->
+<!--        {% endif %}-->
+
+<!--    {% if i.section != 'IntermediatePHP' and i.score < 7 %}-->
+<!--        <div class="p-2"><a href="#">Advanced</a></div>-->
+<!--    {% endif %}-->
+
+
 
 </div>
-    
-
     </div>
 
 </body>

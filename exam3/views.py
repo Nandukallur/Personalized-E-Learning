@@ -1,5 +1,7 @@
 from django.shortcuts import render
-
+import random
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 php_questions = [
@@ -782,8 +784,10 @@ def basicphp_section(request):
 
 
 def intermediatephp_section(request):
+    scores=TestResult.objects.filter(user=request.user)
+    print(scores)
     random_questions = request.session.get('random_questions_intermediatephp')
-    print(random_questions)
+
     if not random_questions:
         random_questions = random.sample(php_questions_intermediate, 10)
         request.session['random_questions_intermediatephp'] = random_questions
@@ -833,15 +837,15 @@ def intermediatephp_section(request):
                 'total_marks': total_marks,
             })
 
-    return render(request, 'intermediate_php.html', {'random_questions': random_questions})
+    return render(request, 'intermediate_php.html', {'random_questions': random_questions,'score':scores})
 
 
-class Intermediatelearn(TemplateView):
-    template_name='intermediatephp_learn.html'
+
 
 
 
 def advancedphp_section(request):
+    scores = TestResult.objects.filter(user=request.user)
     random_questions = request.session.get('random_questions_advancedphp')
     print(random_questions)
     if not random_questions:
@@ -893,12 +897,14 @@ def advancedphp_section(request):
                 'total_marks': total_marks,
             })
 
-    return render(request, 'advanced_php.html', {'random_questions': random_questions})
+    return render(request, 'advanced_php.html', {'random_questions': random_questions,'score':scores})
 
 
 # class Intermediatelearn(TemplateView):
 #     template_name='advanced_htmlhtml_learn.html'
 
+class Intermediatelearn(TemplateView):
+    template_name='intermediatephp_learn.html'
 class phplearning_page(TemplateView):
     template_name="basic_learnphp.html"
 
@@ -909,5 +915,13 @@ class phpinter_learn(TemplateView):
 class phplearnadv(TemplateView):
     template_name="advlearn_php.html"
     
-def phpintro(request):
-    return render(request, "phpintro.html")
+# def phpintro(request):
+#     return render(request, "phpintro.html")
+class phpintro(TemplateView):
+    template_name = 'phpintro.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['data'] = TestResult.objects.filter(user=self.request.user)
+        print(context['data'])
+        return context
