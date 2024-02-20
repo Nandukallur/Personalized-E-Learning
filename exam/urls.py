@@ -14,7 +14,7 @@ urlpatterns = [
     path('basic_learning/',basic_video_material,name='b_video'),
     path('intermediate_learning/',intermediate_text_material,name='i_learn'),
     path('advanced_learning/',advanced_text_material,name='a_learn'),
-
+    path('pythonintro/',pythonintro,name='pythonintro'),
     path('upload/', upload_project, name='upload_project'),
     path('project_list/', project_list, name='project_list'),
     path('download/<int:project_id>/', download_project, name='download_project'),
