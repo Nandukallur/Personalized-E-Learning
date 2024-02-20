@@ -13,7 +13,10 @@ class CustUser(AbstractUser):
     )
     gender = models.CharField(max_length=100, choices=options, null=True, default='Male')
     age = models.IntegerField(null=True)
-
+    is_active_basic = models.BooleanField(default=False,null=True,blank=True)
+    is_active_inter = models.BooleanField(default=False,null=True,blank=True)
+    is_active_adv = models.BooleanField(default=False,null=True,blank=True)
+    is_active_coding = models.BooleanField(default=False,null=True,blank=True)
 
 class pdfnotes(models.Model):
     pdff = models.FileField(upload_to="notes")
