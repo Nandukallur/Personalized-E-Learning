@@ -12,7 +12,7 @@ urlpatterns = [
     path('html_learn/',Basiclearn.as_view(),name='bhtml_learn'),
     path('intermediatehtml_learning/',intermediate_text_material,name='ihtml_learn'),
     path('advancedhtml_learning/',advanced_text_material,name='ahtml_learn'),
-
+    path('htmlintro/', htmlintro, name='htmlintro'),
     path('upload2/', upload_project2, name='upload_project2'),
     path('project_list/', project_list, name='project_list'),
     path('download/<int:project_id>/', download_project, name='download_project'),
