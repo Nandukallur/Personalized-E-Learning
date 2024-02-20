@@ -6,16 +6,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <title>PyCompiler</title>
+    <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 20px;
+      background-color: #f5f5f5;
+      text-align: center;
+  }
+
+  h1 {
+      color: #333;
+  }
+
+  ol {
+      list-style-type: none;
+      padding: 0;
+  }
+
+  li {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 5px;
+  }
+
+  code {
+      background-color: #f8f8f8;
+      padding: 3px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+  }
+
+  .vstack > div {
+      text-align: center;
+      background-color: #e0e0e0; /* Light gray background color */
+      border-radius: 0px; /* Rounded corners for a better appearance */
+      padding: 10px; /* Adjusted padding for spacing inside the items */
+      margin-bottom: 5px; /* Reduced margin between items for spacing */
+      transition: background-color 0.3s ease; /* Smooth transition for background color change */
+      max-width: 300px; /* Reduced maximum width for each item */
+      overflow: hidden; /* Hide overflowing content */
+      text-overflow: ellipsis; /* Show ellipsis for overflow text */
+      white-space: nowrap; /* Prevent text from wrapping */
+  }
+
+  .vstack > div:hover {
+      background-color: #33cbd6; /* Darker gray background color on hover */
+  }
+
+  .questions {
+      margin-top: -10px;
+  }
+
+
+    </style>
   </head>
   <body style="font-family:Verdana;"><br>
+
+    <div class="qustions">
+    <h1>10 Python Programming Questions</h1>
+
+    <ol>
+        <li>Write a Python program to find the sum of two numbers.</li>
+
+        <li>Write a program to check if a given number is even or odd in Python.</li>
+
+        <li>Create a Python program to generate Fibonacci series up to n terms.</li>
+
+        <li>Write a Python program to find the factorial of a number using a recursive function.</li>
+
+        <li>Implement a program in Python to check if a given string is a palindrome.</li>
+
+        <li>Write a Python program to find the largest element in a list.</li>
+
+        <li>Create a program in Python to calculate the area of a circle given its radius.</li>
+
+        <li>Write a Python program to count the occurrences of each word in a given sentence.</li>
+
+        <li>Implement a Python program to reverse a list in-place.</li>
+
+        <li>Create a program to find the prime numbers in a given range using the Sieve of Eratosthenes algorithm.</li>
+    </ol>
+  </div>
+
+  <div>
     <h1 style="text-align:center;">Compiler</h1><br>
 
     <form action="runcode/" method="post">
@@ -32,7 +115,11 @@
 
   <button type="submit" class="btn btn-primary" style="margin-left:50px;">Submit</button>
 </form>
+</div>
 
+<div class="vstack gap-3">
+            <div class="p-2"><a href="{% url 'codinganswers' %}">Check Answers</a></div>
+          </div>
 
   </body>
 </html>
