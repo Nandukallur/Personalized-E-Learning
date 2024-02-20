@@ -32,6 +32,7 @@
   }
 
   li {
+      text-align: left;
       background-color: #fff;
       border: 1px solid #ddd;
       margin: 10px 0;
@@ -40,6 +41,7 @@
   }
 
   code {
+      text-align: left;
       background-color: #f8f8f8;
       padding: 3px;
       border: 1px solid #ddd;
@@ -73,52 +75,52 @@
   <body style="font-family:Verdana;"><br>
 
     <div class="qustions">
-    <h1>10 Python Programming Questions</h1>
+    <h1>PHP Programming Questions</h1>
 
     <ol>
-        <li>Write a Python program to find the sum of two numbers.</li>
+        <li>Palindrome Checker:
+            Write a PHP function that takes a string as input and checks whether it is a palindrome or not. A palindrome is a word, phrase, or sequence of characters that reads the same backward as forward (ignoring spaces, punctuation, and capitalization).
+        </li>
 
-        <li>Write a program to check if a given number is even or odd in Python.</li>
+        <li>Write a PHP program that prints the numbers from 1 to 100. But for multiples of three, print "Fizz" instead of the number, and for the multiples of five, print "Buzz". For numbers that are multiples of both three and five, print "FizzBuzz".            
+        </li>
 
-        <li>Create a Python program to generate Fibonacci series up to n terms.</li>
+        <li>Write a PHP script that reads the contents of a text file and outputs the number of lines, words, and characters in the file. You can use any text file for testing.
+        </li>
 
-        <li>Write a Python program to find the factorial of a number using a recursive function.</li>
+        <li>Factorial Calculator:
+            Write a PHP function to calculate the factorial of a given non-negative integer.
+        </li>
 
-        <li>Implement a program in Python to check if a given string is a palindrome.</li>
+        <li>
+            Write a PHP function that checks if a given number is a prime number.
+        </li>
 
-        <li>Write a Python program to find the largest element in a list.</li>
+        <li>
+            Write a PHP function to reverse a string without using the strrev() function.
+        </li>
 
-        <li>Create a program in Python to calculate the area of a circle given its radius.</li>
+        <li>
+            Write a PHP function that takes an array of numbers as input and calculates the sum and average of the numbers.
+        </li>
 
-        <li>Write a Python program to count the occurrences of each word in a given sentence.</li>
+        <li>
+            Write a PHP function that checks if a given year is a leap year.
+        </li>
 
-        <li>Implement a Python program to reverse a list in-place.</li>
+        <li>
+            Write a PHP function that takes an array as input and returns a new array containing only the unique elements.
+        </li>
 
-        <li>Create a program to find the prime numbers in a given range using the Sieve of Eratosthenes algorithm.</li>
+        <li>
+            Write a PHP function that parses a URL into its components (scheme, host, path, query parameters, etc.).
+        </li>
     </ol>
   </div>
 
-  <div>
-    <h1 style="text-align:center;">Compiler</h1><br>
-
-    <form action="runcode/" method="post">
-      {% csrf_token %}
-  <div class="form-group" style="margin-left:50px;margin-right:50px;">
-    <label for="codearea">Code Area</label>
-    <textarea type="text" class="form-control" id="codearea" name="codearea" rows="10" onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}">{{ code }}</textarea>
-  </div>
-
-  <div class="form-group" style="margin-left:50px;margin-right:50px;">
-    <label for="output">Output</label>
-    <textarea type="text" class="form-control" id="output" name="output" rows="4" disabled> {{ output }} </textarea>
-  </div>
-
-  <button type="submit" class="btn btn-primary" style="margin-left:50px;">Submit</button>
-</form>
-</div>
 
 <div class="vstack gap-3">
-            <div class="p-2"><a href="{% url 'codinganswers' %}">Check Answers</a></div>
+            <div class="p-2"><a href="{% url 'phpanswers' %}">Check Answers</a></div>
           </div>
 
   </body>

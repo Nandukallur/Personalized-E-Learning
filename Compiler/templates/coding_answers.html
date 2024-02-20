@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Programming Questions</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        ol {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        code {
+            text-align: left;
+            background-color: #f8f8f8;
+            padding: 3px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        ul {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Answers to Python Programming Questions</h1>
+
+    <ol>
+        <li>
+            <p><strong>1. 
+                Here is a Python program to find the sum of two numbers:</strong>
+                <code>
+                    <ul>
+                        <li>num1 = float(input("Enter the first number: "))</li>
+                        <li>num2 = float(input("Enter the second number: "))</li>
+                        <li>sum = num1 + num2</li>
+                        <li>print("Sum:", sum)</li>
+                    </ul>
+                </code>
+            </p>
+        </li>
+
+        <li>
+            <p><strong>2. 
+                Here is a Python program to check if a given number is even or odd:</strong>
+                <code>
+                    <ul>
+                    <li>num = int(input("Enter a number: "))</li>
+                    <li>if num % 2 == 0:</li>
+                    <li>....print("Even")</li>
+                    <li>else:</li>
+                    <li>....print("Odd")</li>
+                    </ul>
+                </code>
+            </p>
+        </li>
+
+        <li>
+            <p><strong>3.
+                Here is a Python program to generate Fibonacci series up to n terms:</strong> 
+                <code>
+                    <ul>
+                    <li>n = int(input("Enter the number of terms: "))</li>
+                    <li>a, b = 0, 1</li>
+                    <li>for _ in range(n):</li>
+                    <li>....print(a, end=" ")</li>
+                    <li>....a, b = b, a + b</li>
+                    </ul>
+                </code>
+                
+            </p>
+        </li>
+
+        <li>
+            <p><strong>4.
+                Here is a Python program to find the factorial of a number using a recursive function:</strong> 
+                <code>
+                    <ul>
+                    <li>def factorial(n):</li>
+                    <li>....if n == 0 or n == 1:</li>
+                    <li>........return 1</li>
+                    <li>....else:</li>
+                    <li>........return n * factorial(n-1)</li>
+                    <li></li>    
+                    <li>num = int(input("Enter a number: "))</li>
+                    <li>result = factorial(num)</li>
+                    <li>print("Factorial:", result)</li>
+                    </ul>
+                </code>
+            </p>
+        </li>
+
+        <li>
+            <p><strong>5. 
+                Here is a Python program to check if a given string is a palindrome:</strong>
+                <code>
+                    <ul>
+                    <li>def is_palindrome(s):</li>
+                    <li>....return s == s[::-1]</li>
+                    <li></li>
+                    <li>string = input("Enter a string: ")</li>
+                    <li>if is_palindrome(string):</li>
+                    <li>....print("Palindrome")</li>
+                    <li>else:</li>
+                    <li>....print("Not a palindrome")</li>
+                    </ul>
+                </code>
+            </p>
+        </li>
+
+        <li>
+            <p><strong>6.
+                Here is a Python program to find the largest element in a list:</strong> 
+                <code>
+                    <ul>
+                    <li>numbers = [5, 8, 2, 10, 3]</li>
+                    <li>max_number = max(numbers)</li>
+                    <li>print("Largest element:", max_number)</li>
+                    </ul>
+                </code>
+            </p>
+        </li>
+
+        <li>
+            <p><strong>7. 
+                Here is a Python program to calculate the area of a circle given its radius:</strong>
+                <code>
+                    <ul>
+                    <li>import math</li>
+                    <li></li>
+                    <li>radius = float(input("Enter the radius of the circle: "))</li>
+                    <li>area = math.pi * radius**2</li>
+                    <li>print("Area of the circle:", area)</li>
+                    </ul>
+                </code>
+            </p>
+        </li>
+
+        <li>
+            <p><strong>8. 
+                Here is a Python program to count the occurrences of each word in a given sentence:</strong>
+                <code>
+                    <ul>
+                    <li>sentence = input("Enter a sentence: ")</li>
+                    <li>word_count = {}</li>
+                    <li>words = sentence.split()</li>
+                    <li></li>
+                    <li>for word in words:</li>
+                    <li>....word_count[word] = word_count.get(word, 0) + 1</li>
+                    <li></li>
+                    <li>print("Word occurrences:", word_count)</li>
+                    </ul>
+                </code>
+            </p>
+        </li>
+
+        <li>
+            <p><strong>9. 
+                Here is a Python program to reverse a list in-place:</strong>
+                <code>
+                    <ul>
+                    <li>numbers = [1, 2, 3, 4, 5]</li>
+                    <li>numbers.reverse()</li>
+                    <li>print("Reversed list:", numbers)</li>
+                    </ul>
+                </code>
+            </p>
+        </li>
+
+        <li>
+            <p><strong>10.
+                Here is a Python program to find the prime numbers in a given range using the Sieve of Eratosthenes algorithm:</strong>
+                <code>
+                    <ul>
+                    <li>def sieve_of_eratosthenes(n):</li>
+                    <li>....primes = [True] * (n + 1)</li>
+                    <li>....primes[0] = primes[1] = False</li>
+                    <li></li>    
+                    <li>....for i in range(2, int(n**0.5) + 1):</li>
+                    <li>........if primes[i]:</li>
+                    <li>............for j in range(i*i, n + 1, i):</li>
+                    <li>................primes[j] = False</li>
+                    <li></li>                
+                    <li>....return [x for x in range(2, n + 1) if primes[x]]</li>
+                    <li></li>
+                    <li>range_limit = int(input("Enter the range limit: "))</li>
+                    <li>prime_numbers = sieve_of_eratosthenes(range_limit)</li>
+                    <li>print("Prime numbers up to", range_limit, ":", prime_numbers)</li>
+                </ul>
+                </code>
+            </p>
+        </li>
+    </ol>
+</body>
+</html>

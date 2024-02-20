@@ -32,6 +32,7 @@
   }
 
   li {
+      text-align: left;
       background-color: #fff;
       border: 1px solid #ddd;
       margin: 10px 0;
@@ -40,6 +41,7 @@
   }
 
   code {
+      text-align: left;
       background-color: #f8f8f8;
       padding: 3px;
       border: 1px solid #ddd;
@@ -73,52 +75,44 @@
   <body style="font-family:Verdana;"><br>
 
     <div class="qustions">
-    <h1>10 Python Programming Questions</h1>
+    <h1>HTML Programming Questions</h1>
 
     <ol>
-        <li>Write a Python program to find the sum of two numbers.</li>
+        <li>Write a HTML program to design a form which should
+            allow to enter your personal data
+             ( Hint: make use of text field, password field, e-mail, lists, radio buttons,
+            checkboxes, submit button)</li>
 
-        <li>Write a program to check if a given number is even or odd in Python.</li>
+        <li>Write html code to generate following output.
+            <ul>
+            <li>Coffee</li>
+            <li>Tea</li>
+                <ul>
+                    <li>Black Tea</li>
+                    <li>Green Tea</li>
+                </ul>
+            <li>Milk</li>
+        </ul>
+         </li>
 
-        <li>Create a Python program to generate Fibonacci series up to n terms.</li>
+        <li>Create an html page with 7 separate lines in different colors. State
+            color of each line in its text.
+        </li>
 
-        <li>Write a Python program to find the factorial of a number using a recursive function.</li>
-
-        <li>Implement a program in Python to check if a given string is a palindrome.</li>
-
-        <li>Write a Python program to find the largest element in a list.</li>
-
-        <li>Create a program in Python to calculate the area of a circle given its radius.</li>
-
-        <li>Write a Python program to count the occurrences of each word in a given sentence.</li>
-
-        <li>Implement a Python program to reverse a list in-place.</li>
-
-        <li>Create a program to find the prime numbers in a given range using the Sieve of Eratosthenes algorithm.</li>
+        <li>
+            Create an html page with following specifications
+            Title should be about myCity Place your City name at the top of the
+           page in large text and in blue color Add names of landmarks in your city
+           each in a different color, style and typeface One of the landmark, your
+           college name should be blinking . Add scrolling text with a message of
+           your choice.
+        </li>
     </ol>
   </div>
 
-  <div>
-    <h1 style="text-align:center;">Compiler</h1><br>
-
-    <form action="runcode/" method="post">
-      {% csrf_token %}
-  <div class="form-group" style="margin-left:50px;margin-right:50px;">
-    <label for="codearea">Code Area</label>
-    <textarea type="text" class="form-control" id="codearea" name="codearea" rows="10" onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}">{{ code }}</textarea>
-  </div>
-
-  <div class="form-group" style="margin-left:50px;margin-right:50px;">
-    <label for="output">Output</label>
-    <textarea type="text" class="form-control" id="output" name="output" rows="4" disabled> {{ output }} </textarea>
-  </div>
-
-  <button type="submit" class="btn btn-primary" style="margin-left:50px;">Submit</button>
-</form>
-</div>
 
 <div class="vstack gap-3">
-            <div class="p-2"><a href="{% url 'codinganswers' %}">Check Answers</a></div>
+            <div class="p-2"><a href="{% url 'htmlanswers' %}">Check Answers</a></div>
           </div>
 
   </body>

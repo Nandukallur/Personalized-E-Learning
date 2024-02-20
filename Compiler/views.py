@@ -39,3 +39,20 @@ def runcode(request):
     #finally return and render index page and send codedata and output to show on page
 
     return render(request , 'index.html', {"code":codeareadata , "output":output})
+
+
+
+def Coding_section(request):
+    return render(request, "coding_answers.html")
+
+def html_questions(request):
+    return render(request, "htmlindex.html")
+
+def php_questions(request):
+    return render(request, "phpindex.html")
+
+def html_answers(request):
+    return render(request, "html_answers.html")
+
+def php_answers(request):
+    return render(request, "php_answers.html")
