@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,22 +30,21 @@
         }
 
         .navbar {
-            background: rgb(124,123,123);
-            background: linear-gradient(90deg, rgba(124,123,123,0.9501050420168067) 33%, rgba(237,237,237,1) 98%);
+            background: linear-gradient(90deg, rgba(124, 123, 123, 0.9501050420168067) 33%, rgba(237, 237, 237, 1) 98%);
             color: white;
             overflow: hidden;
-            padding: 20px ; /* Adjust navbar padding */
-            line-height: 2; /* Adjust navbar height */
+            padding: 20px;
+            line-height: 2;
         }
 
         .navbar h2 {
             margin: 0;
-            color: white; /* Change text color to white */
-            transition: color 0.3s; /* Smooth transition effect */
+            color: white;
+            transition: color 0.3s;
         }
 
         .navbar h2:hover {
-            color: red; /* Change hover color to red */
+            color: red;
         }
 
         .navbar .hamburger {
@@ -69,10 +69,10 @@
             height: 70vh;
             background-color: #d8e6e5;
             padding: 20px;
-            border-radius: 10px; /* Added border-radius */
+            border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 600px; /* Added maximum width */
-            margin: 0 auto; /* Center the container horizontally */
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         label {
@@ -109,53 +109,74 @@
         button:hover {
             background-color: #45a049;
         }
+
+        label {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        input[type="radio"] {
+            display: inline-block;
+        }
     </style>
 </head>
+
 <body>
-<section id="one">
-    <nav class="navbar">
-       <div class="nav-logo">
-             <a href="{% url 'h' %}"><h2>E-Learning</h2></a>
-        </div>
-    </nav>
-</section>
-<div class="bg-img">
-    <img src="{% static 'images/learning.jpg' %}" alt="no image">
-</div>
-<div class="container">
-    <h2>Upload Project</h2>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <!-- Display sample questions -->
-        <label for="sample_question">Select a Sample Question:</label>
-        <select id="sample_question" name="sample_question">
-            <option value="" selected disabled>Select a Sample Question</option>
-            <option value="Question 1">Question 1: implement a To-Do List Application.</option>
-            <option value="Question 2">Question 2: Create a Calculator app.</option>
-            <option value="Question 3">Question 3: Create a Quiz App.</option>
-            <option value="Question 4">Question 4: Develop a Password Generator app.</option>
-            <option value="Question 5">Question 5: Develop a URL Shortener app.</option>
-        </select>
+    <section id="one">
+        <nav class="navbar">
+            <div class="nav-logo">
+                <a href="{% url 'h' %}">
+                    <h2>E-Learning</h2>
+                </a>
+            </div>
+        </nav>
+    </section>
+    <div class="bg-img">
+        <img src="{% static 'images/learning.jpg' %}" alt="no image">
+    </div>
+    <div class="container">
+        <h2>Upload Project</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- Display sample questions -->
+            <label for="sample_question">Select a Sample Question:</label>
+            <select id="sample_question" name="sample_question">
+                <option value="" selected disabled>Select a Sample Question</option>
+                <option value="Question 1">Question 1: implement a To-Do List Application.</option>
+                <option value="Question 2">Question 2: Create a Calculator app.</option>
+                <option value="Question 3">Question 3: Create a Quiz App.</option>
+                <option value="Question 4">Question 4: Develop a Password Generator app.</option>
+                <option value="Question 5">Question 5: Develop a URL Shortener app.</option>
+            </select>
 
-        <label for="id_project_name">Project Name:</label>
-        {{ form.project_name }}
+            <label for="id_project_name">Project Name:</label>
+            {{ form.project_name }}
 
-        <label for="id_file">File:</label>
-        {{ form.file }}
+            <label for="id_file">File:</label>
+            {{ form.file }}
+            <br><br>
+            <label>Project coding Language:</label>
 
-        <label for="id_project_language">Project coding Language:</label>
-        {{ form.project_language }}
+            <input type="radio" id="python" name="project_language" value="python">
+            <label for="python">Python</label>
 
-        <label for="id_git_link">Git Link:</label>
-        {{ form.git_link }}
+            <input type="radio" id="html" name="project_language" value="html">
+            <label for="html">HTML</label>
 
-        <label for="id_project_description">Project Description:</label>
-        <textarea id="id_project_description" name="project_description" rows="4" cols="50"></textarea>
+            <input type="radio" id="php" name="project_language" value="php">
+            <label for="php">PHP</label>
+            <br><br>
+            <label for="id_git_link">Git Link:</label>
+            {{ form.git_link }}
+            <br><br>
+            <label for="id_project_description">Project Description:</label>
+            <textarea id="id_project_description" name="project_description" rows="4" cols="50"></textarea>
 
-        <button type="submit">Upload</button>
-    </form>
-</div>
+            <button type="submit">Upload</button>
+        </form>
+    </div>
 
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
+
 </html>
