@@ -183,7 +183,7 @@ def generate_certificate(request):
     user = request.user
 
     # Load the existing certificate PNG template
-    template_path = 'C:/Users/HP/PycharmProjects/Personalized E-Learning4/Personalized E-Learning/E_Learning/accounts/static/images/htmlcertificate.png'  # Replace with the path to your font file
+    template_path = 'C:/Users/user/INTERNSHIP/Personalized-E-Learning/accounts/static/images/htmlcertificate.png'  # Replace with the path to your font file
 
     # Create a response object to store the PNG
     response = HttpResponse(content_type='image/png')
@@ -194,14 +194,24 @@ def generate_certificate(request):
     draw = ImageDraw.Draw(img)
 
     # Specify the font and size for the text overlay
-    font_size = 80
-    font_path = 'C:/Users/HP/PycharmProjects/Personalized E-Learning4/Personalized E-Learning/E_Learning/accounts/static/images/Roboto-Medium.ttf'  # Replace with the path to your font file
+    font_size = 60
+    font_path = 'C:/Users/user/INTERNSHIP/Personalized-E-Learning/accounts/static/images/Roboto-Medium.ttf'  # Replace with the path to your font file
     font = ImageFont.truetype(font_path, font_size)
 
     # Overlay the user's name onto the certificate
-    name_position = (700, 680)  # Adjust the position as needed(horizontal,vertical)
+    name_position = (860, 680)  # Adjust the position as needed(horizontal,vertical)
     uppercase_name = user.get_full_name().upper()
     draw.text(name_position, uppercase_name, fill="black", font=font)
+
+    # Retrieve project names associated with the user
+
+    projects = UploadedFile.objects.filter(student=user,project_language ='html')
+    project_names = [project.project_name for project in projects]
+
+
+    # Overlay project names onto the certificate
+    project_names_position = (860, 980)  # Adjust the position as needed
+    draw.text(project_names_position, "\n".join(project_names), fill="black",font=font)
 
     # You can add more overlay text or images as needed
     #     # Save the modified image to BytesIO
@@ -218,23 +228,30 @@ def send_certificate_email(request):
     user = request.user
 
     # Load the existing certificate PNG template
-    template_path = 'C:/Users/HP/PycharmProjects/Personalized E-Learning4/Personalized E-Learning/E_Learning/accounts/static/images/htmlcertificate.png'  # Replace with the path to your font file
+    template_path = 'C:/Users/user/INTERNSHIP/Personalized-E-Learning/accounts/static/images/htmlcertificate.png'  # Replace with the path to your font file
 
     # Open the existing certificate image using Pillow
     img = Image.open(template_path)
     draw = ImageDraw.Draw(img)
 
     # Specify the font and size for the text overlay
-    font_size = 80
-    font_path = 'C:/Users/HP/PycharmProjects/Personalized E-Learning4/Personalized E-Learning/E_Learning/accounts/static/images/Roboto-Medium.ttf'  # Replace with the path to your font file
+    font_size = 60
+    font_path = 'C:/Users/user/INTERNSHIP/Personalized-E-Learning/accounts/static/images/Roboto-Medium.ttf'  # Replace with the path to your font file
     font = ImageFont.truetype(font_path, font_size)
 
     # Overlay the user's name onto the certificate
-    name_position = (700, 680)  # Adjust the position as needed
+    name_position = (860, 680)  # Adjust the position as needed
     uppercase_name = user.get_full_name().upper()
     draw.text(name_position, uppercase_name, fill="black", font=font)
 
     # You can add more overlay text or images as needed
+    # Retrieve project names associated with the user
+    projects = UploadedFile.objects.filter(student=user,project_language ='html')
+    project_names = [project.project_name for project in projects]
+
+    # Overlay project names onto the certificate
+    project_names_position = (860, 980)  # Adjust the position as needed
+    draw.text(project_names_position, "\n".join(project_names), fill="black",font=font)
 
     # Save the modified image to BytesIO
     img_byte_array = BytesIO()
@@ -264,7 +281,7 @@ def download_certificate(request):
     user = request.user
 
     # Load the existing certificate PNG template
-    template_path = 'C:/Users/HP/PycharmProjects/Personalized E-Learning4/Personalized E-Learning/E_Learning/accounts/static/images/htmlcertificate.png'  # Replace with the path to your font file
+    template_path = 'C:/Users/user/INTERNSHIP/Personalized-E-Learning/accounts/static/images/htmlcertificate.png'  # Replace with the path to your font file
 
     # Create a response object to store the PNG
     response = HttpResponse(content_type='image/png')
@@ -274,15 +291,22 @@ def download_certificate(request):
     draw = ImageDraw.Draw(img)
 
     # Specify the font and size for the text overlay
-    font_size = 80
-    font_path = 'C:/Users/HP/PycharmProjects/Personalized E-Learning4/Personalized E-Learning/E_Learning/accounts/static/images/Roboto-Medium.ttf'  # Replace with the path to your font file
+    font_size = 60
+    font_path = 'C:/Users/user/INTERNSHIP/Personalized-E-Learning/accounts/static/images/Roboto-Medium.ttf'  # Replace with the path to your font file
     font = ImageFont.truetype(font_path, font_size)
 
     # Overlay the user's name onto the certificate
-    name_position = (700, 680)  # Adjust the position as needed(horizontal,vertical)
+    name_position = (860, 680)  # Adjust the position as needed(horizontal,vertical)
     uppercase_name = user.get_full_name().upper()
     draw.text(name_position, uppercase_name, fill="black", font=font)
 
+    # Retrieve project names associated with the user
+    projects = UploadedFile.objects.filter(student=user,project_language ='html')
+    project_names = [project.project_name for project in projects]
+
+    # Overlay project names onto the certificate
+    project_names_position = (860, 980)  # Adjust the position as needed
+    draw.text(project_names_position, "\n".join(project_names), fill="black",font=font)
     # Save the modified image to BytesIO
 
     messages.success(request, 'Certificate downloaded successfully.')
@@ -300,8 +324,7 @@ def generate_pythoncertificate(request):
     user = request.user
 
     # Load the existing certificate PNG template
-    template_path = 'C:/Users/HP/PycharmProjects/Personalized E-Learning4/Personalized E-Learning/E_Learning/accounts/static/images/pythoncertificate.png'  # Replace with the path to your font file
-
+    template_path = 'C:/Users/user/INTERNSHIP/Personalized-E-Learning/accounts/static/images/pythoncertificate.png'  # Replace with the path to your font file
     # Create a response object to store the PNG
     response = HttpResponse(content_type='image/png')
     response['Content-Disposition'] = f'filename={user.username}_certificate.png'
@@ -311,14 +334,21 @@ def generate_pythoncertificate(request):
     draw = ImageDraw.Draw(img)
 
     # Specify the font and size for the text overlay
-    font_size = 80
-    font_path = 'C:/Users/HP/PycharmProjects/Personalized E-Learning4/Personalized E-Learning/E_Learning/accounts/static/images/Roboto-Medium.ttf'  # Replace with the path to your font file
+    font_size = 60
+    font_path = 'C:/Users/user/INTERNSHIP/Personalized-E-Learning/accounts/static/images/Roboto-Medium.ttf'  # Replace with the path to your font file
     font = ImageFont.truetype(font_path, font_size)
 
     # Overlay the user's name onto the certificate
-    name_position = (700, 680)  # Adjust the position as needed(horizontal,vertical)
+    name_position = (860, 680)  # Adjust the position as needed(horizontal,vertical)
     uppercase_name = user.get_full_name().upper()
     draw.text(name_position, uppercase_name, fill="black", font=font)
+        # Retrieve project names associated with the user
+    projects = UploadedFile.objects.filter(student=user,project_language ='python')
+    project_names = [project.project_name for project in projects]
+
+    # Overlay project names onto the certificate
+    project_names_position = (860, 980)  # Adjust the position as needed
+    draw.text(project_names_position, "\n".join(project_names), fill="black",font=font)
 
     # You can add more overlay text or images as needed
     #     # Save the modified image to BytesIO
@@ -335,22 +365,28 @@ def send_pythoncertificate_email(request):
     user = request.user
 
     # Load the existing certificate PNG template
-    template_path = 'C:/Users/HP/PycharmProjects/Personalized E-Learning4/Personalized E-Learning/E_Learning/accounts/static/images/pythoncertificate.png'  # Replace with the path to your font file
+    template_path = 'C:/Users/user/INTERNSHIP/Personalized-E-Learning/accounts/static/images/pythoncertificate.png'  # Replace with the path to your font file
 
     # Open the existing certificate image using Pillow
     img = Image.open(template_path)
     draw = ImageDraw.Draw(img)
 
     # Specify the font and size for the text overlay
-    font_size = 80
-    font_path = 'C:/Users/HP/PycharmProjects/Personalized E-Learning4/Personalized E-Learning/E_Learning/accounts/static/images/Roboto-Medium.ttf'  # Replace with the path to your font file
+    font_size = 60
+    font_path = 'C:/Users/user/INTERNSHIP/Personalized-E-Learning/accounts/static/images/Roboto-Medium.ttf'  # Replace with the path to your font file
     font = ImageFont.truetype(font_path, font_size)
 
     # Overlay the user's name onto the certificate
-    name_position = (700, 680)  # Adjust the position as needed
+    name_position = (860, 680)  # Adjust the position as needed
     uppercase_name = user.get_full_name().upper()
     draw.text(name_position, uppercase_name, fill="black", font=font)
+    # Retrieve project names associated with the user
+    projects = UploadedFile.objects.filter(student=user,project_language ='python')
+    project_names = [project.project_name for project in projects]
 
+    # Overlay project names onto the certificate
+    project_names_position = (860, 980)  # Adjust the position as needed
+    draw.text(project_names_position, "\n".join(project_names), fill="black",font=font)
     # You can add more overlay text or images as needed
 
     # Save the modified image to BytesIO
@@ -381,7 +417,7 @@ def download_pythoncertificate(request):
     user = request.user
 
     # Load the existing certificate PNG template
-    template_path = 'C:/Users/HP/PycharmProjects/Personalized E-Learning4/Personalized E-Learning/E_Learning/accounts/static/images/pythoncertificate.png'  # Replace with the path to your font file
+    template_path = 'C:/Users/user/INTERNSHIP/Personalized-E-Learning/accounts/static/images/pythoncertificate.png'  # Replace with the path to your font file
 
     # Create a response object to store the PNG
     response = HttpResponse(content_type='image/png')
@@ -391,15 +427,21 @@ def download_pythoncertificate(request):
     draw = ImageDraw.Draw(img)
 
     # Specify the font and size for the text overlay
-    font_size = 80
-    font_path = 'C:/Users/HP/PycharmProjects/Personalized E-Learning4/Personalized E-Learning/E_Learning/accounts/static/images/Roboto-Medium.ttf'  # Replace with the path to your font file
+    font_size = 60
+    font_path = 'C:/Users/user/INTERNSHIP/Personalized-E-Learning/accounts/static/images/Roboto-Medium.ttf'  # Replace with the path to your font file
     font = ImageFont.truetype(font_path, font_size)
 
     # Overlay the user's name onto the certificate
-    name_position = (700, 680)  # Adjust the position as needed(horizontal,vertical)
+    name_position = (860, 680)  # Adjust the position as needed(horizontal,vertical)
     uppercase_name = user.get_full_name().upper()
     draw.text(name_position, uppercase_name, fill="black", font=font)
+    # Retrieve project names associated with the user
+    projects = UploadedFile.objects.filter(student=user,project_language ='python')
+    project_names = [project.project_name for project in projects]
 
+    # Overlay project names onto the certificate
+    project_names_position = (860, 980)  # Adjust the position as needed
+    draw.text(project_names_position, "\n".join(project_names), fill="black",font=font)
     # Save the modified image to BytesIO
 
     messages.success(request, 'Certificate downloaded successfully.')
@@ -417,7 +459,7 @@ def generate_phpcertificate(request):
     user = request.user
 
     # Load the existing certificate PNG template
-    template_path = 'C:/Users/HP/PycharmProjects/Personalized E-Learning4/Personalized E-Learning/E_Learning/accounts/static/images/phpcertificate.png'  # Replace with the path to your font file
+    template_path = 'C:/Users/user/INTERNSHIP/Personalized-E-Learning/accounts/static/images/phpcertificate.png'  # Replace with the path to your font file
 
     # Create a response object to store the PNG
     response = HttpResponse(content_type='image/png')
@@ -428,15 +470,21 @@ def generate_phpcertificate(request):
     draw = ImageDraw.Draw(img)
 
     # Specify the font and size for the text overlay
-    font_size = 80
-    font_path = 'C:/Users/HP/PycharmProjects/Personalized E-Learning4/Personalized E-Learning/E_Learning/accounts/static/images/Roboto-Medium.ttf'  # Replace with the path to your font file
+    font_size = 60
+    font_path = 'C:/Users/user/INTERNSHIP/Personalized-E-Learning/accounts/static/images/Roboto-Medium.ttf'  # Replace with the path to your font file
     font = ImageFont.truetype(font_path, font_size)
 
     # Overlay the user's name onto the certificate
-    name_position = (700, 680)  # Adjust the position as needed(horizontal,vertical)
+    name_position = (860, 680)  # Adjust the position as needed(horizontal,vertical)
     uppercase_name = user.get_full_name().upper()
     draw.text(name_position, uppercase_name, fill="black", font=font)
+    # Retrieve project names associated with the user
+    projects = UploadedFile.objects.filter(student=user,project_language ='php')
+    project_names = [project.project_name for project in projects]
 
+    # Overlay project names onto the certificate
+    project_names_position = (860, 980)  # Adjust the position as needed
+    draw.text(project_names_position, "\n".join(project_names), fill="black",font=font)
     # You can add more overlay text or images as needed
     #     # Save the modified image to BytesIO
     img_byte_array = BytesIO()
@@ -452,22 +500,28 @@ def send_phpcertificate_email(request):
     user = request.user
 
     # Load the existing certificate PNG template
-    template_path = 'C:/Users/HP/PycharmProjects/Personalized E-Learning4/Personalized E-Learning/E_Learning/accounts/static/images/phpcertificate.png'  # Replace with the path to your font file
+    template_path = 'C:/Users/user/INTERNSHIP/Personalized-E-Learning/accounts/static/images/phpcertificate.png'  # Replace with the path to your font file
 
     # Open the existing certificate image using Pillow
     img = Image.open(template_path)
     draw = ImageDraw.Draw(img)
 
     # Specify the font and size for the text overlay
-    font_size = 80
-    font_path = 'C:/Users/HP/PycharmProjects/Personalized E-Learning4/Personalized E-Learning/E_Learning/accounts/static/images/Roboto-Medium.ttf'  # Replace with the path to your font file
+    font_size = 60
+    font_path = 'C:/Users/user/INTERNSHIP/Personalized-E-Learning/accounts/static/images/Roboto-Medium.ttf'  # Replace with the path to your font file
     font = ImageFont.truetype(font_path, font_size)
 
     # Overlay the user's name onto the certificate
-    name_position = (700, 680)  # Adjust the position as needed
+    name_position = (860, 680)  # Adjust the position as needed
     uppercase_name = user.get_full_name().upper()
     draw.text(name_position, uppercase_name, fill="black", font=font)
+    # Retrieve project names associated with the user
+    projects = UploadedFile.objects.filter(student=user,project_language ='php')
+    project_names = [project.project_name for project in projects]
 
+    # Overlay project names onto the certificate
+    project_names_position = (860, 980)  # Adjust the position as needed
+    draw.text(project_names_position, "\n".join(project_names), fill="black",font=font)
     # You can add more overlay text or images as needed
 
     # Save the modified image to BytesIO
@@ -498,7 +552,7 @@ def download_phpcertificate(request):
     user = request.user
 
     # Load the existing certificate PNG template
-    template_path = 'C:/Users/HP/PycharmProjects/Personalized E-Learning4/Personalized E-Learning/E_Learning/accounts/static/images/phpcertificate.png'  # Replace with the path to your font file
+    template_path = 'C:/Users/user/INTERNSHIP/Personalized-E-Learning/accounts/static/images/phpcertificate.png'  # Replace with the path to your font file
 
     # Create a response object to store the PNG
     response = HttpResponse(content_type='image/png')
@@ -508,15 +562,21 @@ def download_phpcertificate(request):
     draw = ImageDraw.Draw(img)
 
     # Specify the font and size for the text overlay
-    font_size = 80
-    font_path = 'C:/Users/HP/PycharmProjects/Personalized E-Learning4/Personalized E-Learning/E_Learning/accounts/static/images/Roboto-Medium.ttf'  # Replace with the path to your font file
+    font_size = 60
+    font_path = 'C:/Users/user/INTERNSHIP/Personalized-E-Learning/accounts/static/images/Roboto-Medium.ttf'  # Replace with the path to your font file
     font = ImageFont.truetype(font_path, font_size)
 
     # Overlay the user's name onto the certificate
-    name_position = (700, 680)  # Adjust the position as needed(horizontal,vertical)
+    name_position = (860, 680)  # Adjust the position as needed(horizontal,vertical)
     uppercase_name = user.get_full_name().upper()
     draw.text(name_position, uppercase_name, fill="black", font=font)
+    # Retrieve project names associated with the user
+    projects = UploadedFile.objects.filter(student=user,project_language ='php')
+    project_names = [project.project_name for project in projects]
 
+    # Overlay project names onto the certificate
+    project_names_position = (860, 980)  # Adjust the position as needed
+    draw.text(project_names_position, "\n".join(project_names), fill="black",font=font)
     # Save the modified image to BytesIO
 
     messages.success(request, 'Certificate downloaded successfully.')

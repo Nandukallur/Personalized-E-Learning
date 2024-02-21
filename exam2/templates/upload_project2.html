@@ -109,6 +109,15 @@
         button:hover {
             background-color: #45a049;
         }
+
+        label {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        input[type="radio"] {
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
@@ -142,12 +151,22 @@
 
         <label for="id_file">File:</label>
         {{ form.file }}
+        <br><br>
+        <label>Project coding Language:</label>
 
-        <label for="id_project_language">Project coding Language:</label>
-        {{ form.project_language }}
+        <input type="radio" id="python" name="project_language" value="Python">
+        <label for="python">Python</label>
+
+        <input type="radio" id="html" name="project_language" value="html">
+        <label for="html">HTML</label>
+
+        <input type="radio" id="php" name="project_language" value="php">
+        <label for="php">PHP</label>
+        <br><br>
 
         <label for="id_git_link">Git Link:</label>
         {{ form.git_link }}
+        <br><br>
 
         <label for="id_project_description">Project Description:</label>
         <textarea id="id_project_description" name="project_description" rows="4" cols="50"></textarea>

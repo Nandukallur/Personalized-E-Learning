@@ -1,44 +1,107 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <head>
-    <!-- Your head content -->
-<style>
-    #id1{
-        position: absolute;
-        left: 300px;
-        top: 80px:
-        background-color : rgb(255, 255, 255);
+    {% load static %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <style>
+        #id1 {
+            position: absolute;
+            left: 300px;
+            top: 80px;
+            background-color: rgb(255, 255, 255);
+        }
 
+        .navbar {
+            background: rgb(124,123,123);
+            background: linear-gradient(90deg, rgba(124,123,123,0.9501050420168067) 33%, rgba(237,237,237,1) 98%);
+            color: white;
+            overflow: hidden;
+            padding: 20px;
+            line-height: 2;
+        }
 
-</style>
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            font-size: 17px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        #toggleButton {
+            background-color: #f85a40;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #toggleButton:hover {
+            background-color: #d83c22;
+        }
+
+        .section {
+            display: none;
+            padding: 20px;
+            border: 1px solid #060606;
+            border-radius: 5px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(250, 248, 248, 0.1);
+        }
+
+        .active {
+            display: block;
+        }
+    </style>
 </head>
-<body>
+<body style="background-color:#d4d9d9;">
+<section id="one">
+    <nav class="navbar">
+        <div class="nav-logo">
+             <a href="{% url 'h' %}"><h2>E-Learning</h2></a>
+        </div>
+    </nav>
+</section>
     <div id="id1">
     <!-- Display the certificate image -->
     <img src="{% url 'generate_phpcertificate' %}"  width="800px;" alt="Certificate">
 
     <!-- Add a button to send the certificate via email -->
-
+    <div style="margin-top: 10px;">
     <a href="{% url 'send_phpcertificate_email' %}" class="btn btn-danger" style="margin-left: 150px;">Send Certificate</a>
     <a href="{% url 'download_phpcertificate' %}" class="btn btn-danger" style="margin-left: 50px;">Download</a>
+  </div>
     <!-- Your additional content or styling -->
 </div>
+
 {% if messages %}
-  {% for message in messages %}
-    <script>
-      // Display SweetAlert on page load
-      swal({
-        title: "{{ message.tags }}",
-        text: "{{ message }}",
-        icon: "{{ message.tags }}",
-        button: "OK",
-      });
-    </script>
-  {% endfor %}
+    {% for message in messages %}
+        <script>
+            // Display SweetAlert on page load
+            swal({
+                title: "{{ message.tags }}",
+                text: "{{ message }}",
+                icon: "{{ message.tags }}",
+                button: "OK",
+            });
+        </script>
+    {% endfor %}
 {% endif %}
+
+<!-- Include Bootstrap JS if needed -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Add any other content or scripts as needed -->
 </body>
 </html>

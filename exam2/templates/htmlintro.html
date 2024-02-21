@@ -321,28 +321,20 @@
 
     <div class="vstack gap-3">
         <div class="p-2"><a href="{% url 'basichtml' %}">Basic Section</a></div>
-        {% if user.is_active_basic  %}
-        <div class="p-2"><a href="{% url 'interhtml' %}">Intermediate</a></div>
-        {% else %}
-        <div class="p-2" ><a href="">Intermediate</a></div>
-        {% endif %}
-        {% if user.is_active_inter %}
-        <div class="p-2"><a href="{% url 'advhtml' %}">Advanced</a></div>
-        {% else %}
-        <div class="p-2"><a href="">Advanced</a></div>
-        {% endif %}
-        {% if user.is_active_adv %}
-        <div class="p-2"><a href="{% url 'htmlcoding' %}">Coding</a></div>
-        {% else %}
-        <div class="p-2"><a href="">Coding</a></div>
-        {% endif %}
-        {% if user.is_active_coding %}
-        <div class="p-2"><a href="#">Project</a></div>
-        {% else %}
-        <div class="p-2"><a href="#">Project</a></div>
-        {% endif %}
+        {% for i in data %}
+            {% if i.section == 'BasicHTML' and i.score > 7 %}
+                <div class="p-2"><a href="{% url 'interhtml' %}">Intermediate</a></div>                  
+            {% endif %}
+            {% if i.section == 'IntermediateHTML' and i.score > 7 %}
+                <div class="p-2"><a href="{% url 'advhtml' %}">Advanced</a></div>
+            {% endif %}
+            {% if i.section == 'AdvancedHTML' and i.score > 7 %}
+                <div class="p-2"><a href="{% url 'htmlcoding' %}">Coding</a></div>
+                <div class="p-2"><a href="{% url 'upload_project2' %}">Project</a></div> 
+            {% endif %}        
+        {% endfor %}
 
-      </div>
+    </div>
 
         </div>
     </div>
