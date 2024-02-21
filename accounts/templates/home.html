@@ -245,13 +245,13 @@
 
                     {% for i in data %}
                           {% if i.section == 'AdvancedHTML' and i.score > 7   %}
-                      <a href="{% url 'htmlcertificate' %}">HTML Section</a>
+                      <a href="{% url 'htmlcertificate' %}">HTML</a>
                           {% endif %}
                       {% endfor %}
 
                     {% for i in data %}
                           {% if i.section == 'AdvancedPHP' and i.score > 7   %}
-                      <a href="{% url 'htmlcertificate' %}">php certificate</a>
+                      <a href="{% url 'htmlcertificate' %}">PHP</a>
                           {% endif %}
                       {% endfor %}
                     </div>
