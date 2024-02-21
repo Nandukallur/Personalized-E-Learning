@@ -235,7 +235,7 @@
                 <li><a   href="{% url 'ProgressCard' %}" style="text-decoration: none;">Progress Report</a></li>
 
                 <div class="dropdown">
-                    <li><button class="dropbtn" ><a  href="{% url 'ScoreTable' %}" style="text-decoration: none;">CERTIFICATE</a></button></li>
+                    <li><button class="dropbtn" ><a  href="#" style="text-decoration: none;">CERTIFICATE</a></button></li>
                     <div class="dropdown-content">
                     {% for i in data %}
                       {% if i.score > 7 and i.section == 'Advanced' %}
