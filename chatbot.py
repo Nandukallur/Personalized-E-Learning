@@ -1,34 +1,72 @@
+from PyPDF2 import PdfReader
+from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain.text_splitter import CharacterTextSplitter
+from langchain.vectorstores import FAISS
 import os
+from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI
-from langchain.chains import LLMChain
-from langchain import PromptTemplate
 
-# Assign the OpenAI API key
-openai_api_key = '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'
+os.environ["OPENAI_API_KEY"] = "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"
 
-# Create an instance of the OpenAI class with the API key as a named parameter
-llm = OpenAI(openai_api_key=openai_api_key, temperature=0.8)
+# provide the paths of pdf files.
+pdf_paths = [
+    r"C:\Users\shilp\OneDrive\Documents\Luminar\Internship\Personalized_E-Learning\Personalized-E-Learning\HTML.pdf",
+    r"C:\Users\shilp\OneDrive\Documents\Luminar\Internship\Personalized_E-Learning\Personalized-E-Learning\PHP.pdf",
+    r"C:\Users\shilp\OneDrive\Documents\Luminar\Internship\Personalized_E-Learning\Personalized-E-Learning\python.pdf"
+]
 
-while True:
-    # Get user input
-    input_text = input('Enter your query (type "exit" to quit): ')
+raw_texts = []
 
-    # Check if the user wants to exit
-    if input_text.lower() == 'exit':
-        print('Thank you for using Chatbot. Have a great day ahead')
-        break
-    elif input_text.lower() in ['hi', 'hai', 'hello', 'hy']:
-        print('Hai, Welcome to Chatbot')
-        continue  # Skip the prompt processing for greetings
+for path in pdf_paths:
+    pdf_reader = PdfReader(path)
+    raw_text = ''
+    for page in pdf_reader.pages:
+        content = page.extract_text()
+        if content:
+            raw_text += content
+    raw_texts.append(raw_text)
 
-    elif input_text.lower() in ['bye', 'by', 'goodbye', 'thank you', 'thanks']:
-        print('Thank you for using Chatbot. Have a great day ahead.')
+# We need to split the text using Character Text Split such that it should not increase token size
+text_splitter = CharacterTextSplitter(
+    separator="\n",
+    chunk_size=800,
+    chunk_overlap=200,
+    length_function=len,
+)
 
-    # Create a prompt template based on user input
-    input_prompt = PromptTemplate(input_variables=['query'], template='IT related {query}')
+texts = [text_splitter.split_text(raw_text) for raw_text in raw_texts]
 
-    # Create an instance of the LLMChain with the OpenAI instance and the prompt template
-    chain = LLMChain(llm=llm, prompt=input_prompt, verbose=True)
+# Flatten the nested list of texts
+flattened_texts = [item for sublist in texts for item in sublist]
 
-    # Run the chain and print the result
-    print(chain.run(input_text))
+# Download embeddings from OpenAI
+embeddings = OpenAIEmbeddings()
+
+# Create FAISS index from the flattened texts
+document_search = FAISS.from_texts(flattened_texts, embeddings)
+
+chain = load_qa_chain(OpenAI(), chain_type="stuff")
+
+
+def get_bot_response(user_input):
+    bot_response = ""  # Initialize bot_response with an empty string
+
+    if user_input.strip().lower() in ["hi", "hello", "hey", "hy"]:
+        bot_response = "Hello, welcome to E-Learning Chatbot. How can I assist you today!"
+    elif user_input.strip().lower() in ["bye", "by", "thank you", "thanks"]:
+        bot_response = "bye, and have a good day"
+    else:
+        question = user_input.strip()  # Extract and clean the question from user input
+        if len(question) < 4:
+            bot_response = "Please enter a valid question!"
+        else:
+            docs = document_search.similarity_search(user_input)
+            bot_response = chain.run(input_documents=docs, question=question)
+
+    return bot_response
+
+
+# Example usage:
+user_input = input("You: ")
+bot_response = get_bot_response(user_input)
+print("Bot:", bot_response)
