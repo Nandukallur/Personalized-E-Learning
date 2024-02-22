@@ -11,7 +11,7 @@ from PyPDF2 import PdfReader
 import os
 
 # Set OpenAI API Key
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "open ai key"
 
 # PDF Paths
 pdf_paths = [
