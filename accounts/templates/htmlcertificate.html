@@ -74,15 +74,14 @@
         </div>
     </nav>
 </section>
-
-<div id="id1">
+    <div id="id1">
     <!-- Display the certificate image -->
-    <img src="{% url 'generate_certificate' %}"  width="800px;" alt="Certificate">
+    <img src="{% url 'generate_pythoncertificate' %}"  width="800px;" alt="Certificate">
 
     <!-- Add a button to send the certificate via email -->
     <div style="margin-top: 10px;">
-        <a href="{% url 'send_certificate_email' %}" class="btn btn-danger" style="margin-left: 150px;">Send Certificate</a>
-        <a href="{% url 'download_certificate' %}" class="btn btn-danger" style="margin-left: 50px;">Download</a>
+    <a href="{% url 'send_pythoncertificate_email' %}" class="btn btn-danger" style="margin-left: 150px;">Send Certificate</a>
+    <a href="{% url 'download_pythoncertificate' %}" class="btn btn-danger" style="margin-left: 50px;">Download</a>
     </div>
     <!-- Your additional content or styling -->
 </div>
