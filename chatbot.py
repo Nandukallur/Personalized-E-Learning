@@ -10,7 +10,7 @@ from langchain_openai import OpenAI
 from langchain_openai import OpenAIEmbeddings
 
 
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "use open-ai key here"
 
 # provide the paths of pdf files.
 pdf_paths = [
