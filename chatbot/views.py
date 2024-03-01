@@ -2,22 +2,26 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
-from langchain.embeddings.openai import OpenAIEmbeddings
+# from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.vectorstores import FAISS
+# from langchain.vectorstores import FAISS
 from langchain.chains.question_answering import load_qa_chain
-from langchain.llms import OpenAI
+# from langchain.llms import OpenAI
 from PyPDF2 import PdfReader
 import os
+from langchain_community.vectorstores import FAISS
+from langchain_openai import OpenAI
+from langchain_openai import OpenAIEmbeddings
+
 
 # Set OpenAI API Key
-os.environ["OPENAI_API_KEY"] = "open ai key"
+os.environ["OPENAI_API_KEY"] = "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"
 
 # PDF Paths
 pdf_paths = [
-    r"C:\Users\shilp\OneDrive\Documents\Luminar\Internship\Personalized_E-Learning\Personalized-E-Learning\HTML.pdf",
-    r"C:\Users\shilp\OneDrive\Documents\Luminar\Internship\Personalized_E-Learning\Personalized-E-Learning\PHP.pdf",
-    r"C:\Users\shilp\OneDrive\Documents\Luminar\Internship\Personalized_E-Learning\Personalized-E-Learning\python.pdf"
+    r"C:\Projects\Learning\Personalized-E-Learning\HTML.pdf",
+    r"C:\Projects\Learning\Personalized-E-Learning\PHP.pdf",
+    r"C:\Projects\Learning\Personalized-E-Learning\python.pdf"
 ]
 
 # Initialize OpenAI embeddings

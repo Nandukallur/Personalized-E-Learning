@@ -1,18 +1,22 @@
 from PyPDF2 import PdfReader
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.vectorstores import FAISS
+# from langchain.vectorstores import FAISS
 import os
 from langchain.chains.question_answering import load_qa_chain
-from langchain.llms import OpenAI
+# from langchain.llms import OpenAI
+from langchain_community.vectorstores import FAISS
+from langchain_openai import OpenAI
+from langchain_openai import OpenAIEmbeddings
 
-os.environ["OPENAI_API_KEY"] = "openai key"
+
+os.environ["OPENAI_API_KEY"] = "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"
 
 # provide the paths of pdf files.
 pdf_paths = [
-    r"C:\Users\shilp\OneDrive\Documents\Luminar\Internship\Personalized_E-Learning\Personalized-E-Learning\HTML.pdf",
-    r"C:\Users\shilp\OneDrive\Documents\Luminar\Internship\Personalized_E-Learning\Personalized-E-Learning\PHP.pdf",
-    r"C:\Users\shilp\OneDrive\Documents\Luminar\Internship\Personalized_E-Learning\Personalized-E-Learning\python.pdf"
+    r"C:\Projects\Learning\Personalized-E-Learning\HTML.pdf",
+    r"C:\Projects\Learning\Personalized-E-Learning\PHP.pdf",
+    r"C:\Projects\Learning\Personalized-E-Learning\python.pdf"
 ]
 
 raw_texts = []
